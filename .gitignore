@@ -67,3 +67,7 @@ _SpecRunner.html
 # Ignore xlsx files generated during testing
 *.xlsx
 enpm-lock.yaml
+
+
+# private test space
+lab

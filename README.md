@@ -1156,6 +1156,10 @@ ws.getCell('B1').note = {
     insetmode: 'custom',
     inset: [0.25, 0.25, 0.35, 0.35]
   },
+  size: {
+      rows: 10,
+      cols:  4
+  },
   protection: {
     locked: True,
     lockText: False
@@ -1168,13 +1172,13 @@ ws.getCell('B1').note = {
 
 The following table defines the properties supported by cell comments.
 
-| Field     | Required | Default Value | Description |
-| --------  | -------- | ------------- | ----------- |
-| texts     | Y        |               | The text of the comment |
-| margins | N        | {}  | Determines the value of margins for automatic or custom cell comments
-| protection   | N        | {} | Specifying the lock status of objects and object text using protection attributes |
-| editAs   | N        | 'absolute' | Use the 'editAs' attribute to specify how the annotation is anchored to the cell  |
-
+| Field     | Required | Default Value       | Description                                                                                             |
+| --------  | -------- |---------------------|---------------------------------------------------------------------------------------------------------|
+| texts     | Y        |                     | The text of the comment                                                                                 |
+| margins | N        | {}                  | Determines the value of margins for automatic or custom cell comments                                   
+| protection   | N        | {}                  | Specifying the lock status of objects and object text using protection attributes                       |
+| editAs   | N        | 'absolute'          | Use the 'editAs' attribute to specify how the annotation is anchored to the cell                        |
+| size      |  N      | {rows:  4, col*: 2} | Set size of note box in rows / columns. Rows defaults to length of `texts` if an array or 4 if a string |
 ### Cell Comments Margins
 
 Determine the page margin setting mode of the cell annotation, automatic or custom mode.
