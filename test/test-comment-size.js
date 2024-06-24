@@ -1,4 +1,4 @@
-const Excel = require('../lib/exceljs.nodejs.js');
+const Excel = require('../lib/exceljs.nodejs');
 const HrStopwatch = require('./utils/hr-stopwatch');
 
 const [, , filename] = process.argv;
@@ -14,8 +14,8 @@ ws.getCell('B2').note = {
     ],
     size: {
         rows: 10,
-        cols: 10
-    }
+        cols: 10,
+    },
 };
 
 ws.getCell('D2').value = 'Zoo';

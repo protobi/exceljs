@@ -90,7 +90,7 @@ ws.addTable({
             name: 'Word',
             filterButton: false,
             style: {font: {bold: true, name: 'Comic Sans MS'}},
-        },
+        },  
     ],
     rows: words.map((word, i) => [new Date((+today) + (86400 * i)), i, word]),
 });
