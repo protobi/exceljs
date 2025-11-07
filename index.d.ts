@@ -996,7 +996,7 @@ export interface WorksheetModel {
 }
 export type WorksheetState = 'visible' | 'hidden' | 'veryHidden';
 
-export type CellIsOperators = 'equal' | 'greaterThan' | 'lessThan' | 'between';
+export type CellIsOperators = 'equal' | 'greaterThan' | 'lessThan' | 'between' | 'notEqual' | 'greaterThanOrEqual' | 'lessThanOrEqual' | 'notBetween';
 
 export type ContainsTextOperators = 'containsText' | 'containsBlanks' | 'notContainsBlanks' | 'containsErrors' | 'notContainsErrors';
 
@@ -1014,7 +1014,8 @@ export interface Cvfo {
 	value?: number;
 }
 export interface ConditionalFormattingBaseRule {
-	priority: number;
+	priority?: number;
+	stopIfTrue?: boolean;
 	style?: Partial<Style>;
 }
 export interface ExpressionRuleType extends ConditionalFormattingBaseRule {
