@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pivotTableDefinition xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="xr" xmlns:xr="http://schemas.microsoft.com/office/spreadsheetml/2014/revision" xr:uid="{267EE50F-B116-784D-8DC2-BA77DE3F4F4A}" name="PivotTable2" cacheId="10" applyNumberFormats="0" applyBorderFormats="0" applyFontFormats="0" applyPatternFormats="0" applyAlignmentFormats="0" applyWidthHeightFormats="1" dataCaption="Values" updatedVersion="8" minRefreshableVersion="3" useAutoFormatting="1" itemPrintTitles="1" createdVersion="8" indent="0" compact="0" compactData="0" multipleFieldFilters="0">
+      <location ref="A3:E15" firstHeaderRow="1" firstDataRow="2" firstDataCol="1" />
+      <pivotFields count="6">
+        
+    <pivotField
+      
+      compact="0" outline="0" showAll="0" defaultSubtotal="0"
+    />
+  
+    <pivotField
+      
+      compact="0" outline="0" showAll="0" defaultSubtotal="0"
+    />
+  
+      <pivotField axis="axisRow" compact="0" outline="0" showAll="0" defaultSubtotal="0">
+        <items count="5">
+          <item x="0" />
+              <item x="1" />
+              <item x="2" />
+              <item x="3" />
+        </items>
+      </pivotField>
+    
+      <pivotField axis="axisCol" compact="0" outline="0" showAll="0" defaultSubtotal="0">
+        <items count="3">
+          <item x="0" />
+              <item x="1" />
+        </items>
+      </pivotField>
+    
+    <pivotField
+      
+      compact="0" outline="0" showAll="0" defaultSubtotal="0"
+    />
+  
+    <pivotField
+      dataField="1"
+      compact="0" outline="0" showAll="0" defaultSubtotal="0"
+    />
+  
+      </pivotFields>
+      <rowFields count="1">
+        <field x="2" />
+      </rowFields>
+      <rowItems count="1">
+        <i t="grand"><x /></i>
+      </rowItems>
+      <colFields count="1">
+        <field x="3" />
+      </colFields>
+      <colItems count="1">
+        <i t="grand"><x /></i>
+      </colItems>
+      <dataFields count="1">
+        <dataField
+          name="Sum of Units"
+          fld="5"
+          baseField="0"
+          baseItem="0"
+        />
+      </dataFields>
+      <pivotTableStyleInfo
+        name="PivotStyleLight16"
+        showRowHeaders="1"
+        showColHeaders="1"
+        showRowStripes="0"
+        showColStripes="0"
+        showLastColumn="1"
+      />
+      <extLst>
+        <ext
+          uri="{962EF5D1-5CA2-4c93-8EF4-DBF5C05439D2}"
+          xmlns:x14="http://schemas.microsoft.com/office/spreadsheetml/2009/9/main"
+        >
+          <x14:pivotTableDefinition
+            hideValuesRow="1"
+            xmlns:xm="http://schemas.microsoft.com/office/excel/2006/main"
+          />
+        </ext>
+        <ext
+          uri="{747A6164-185A-40DC-8AA5-F01512510D54}"
+          xmlns:xpdl="http://schemas.microsoft.com/office/spreadsheetml/2016/pivotdefaultlayout"
+        >
+          <xpdl:pivotTableDefinition16
+            EnabledSubtotalsDefault="0"
+            SubtotalsOnTopDefault="0"
+          />
+        </ext>
+      </extLst>
+    </pivotTableDefinition>
