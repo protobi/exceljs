@@ -2,6 +2,29 @@
 
 This is a **curated fork** of ExcelJS maintained by Protobi. This document contains critical workflow instructions for managing this fork across Claude sessions.
 
+## ⚠️ CRITICAL: Review Before Commit
+
+**ALWAYS ask for user review before committing code changes.**
+
+Do NOT commit automatically, even if:
+- Tests pass
+- Code looks good
+- Changes seem minor
+
+**Workflow:**
+1. Make changes
+2. Show user what changed (git diff or summary)
+3. **Wait for explicit approval**
+4. Then commit and push
+
+The user may want to:
+- Review the changes
+- Test manually
+- Make additional edits
+- Change the approach
+
+Only exception: purely documentary changes explicitly requested (and even then, confirm first).
+
 ## Version Management Strategy
 
 ### Version Number Format
