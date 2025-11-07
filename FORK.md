@@ -39,6 +39,14 @@ Upstream exceljs has 100+ open PRs, some over a year old. We needed these fixes 
 
 **Status:** All original contributions submitted, waiting for upstream review
 
+### 🤝 Community Fork Contributions (Adopted & Submitted)
+
+| Feature/Fix | Our Issue | Source | Upstream PR | Status | Date |
+|-------------|-----------|--------|-------------|--------|------|
+| Table addRow() fix | [#23](https://github.com/protobi/exceljs/issues/23) | [rmartin93/exceljs-fork](https://github.com/rmartin93/exceljs-fork) | TBD | 🔄 Preparing | Nov 2025 |
+
+**Status:** Adopted from community fork, preparing upstream submission
+
 ### 🔒 Security & Maintenance
 
 | Feature/Fix | Our Issue | Upstream PR | Status |
@@ -162,7 +170,41 @@ worksheet.addPivotTable({
 
 **Upstream status:** PR exists ([#2885](https://github.com/exceljs/exceljs/pull/2885)), adopted here
 
-### 3. Enhanced Bug Fixes
+### 3. Table addRow() Fix for Templates
+
+**Why it matters:** Loading Excel files with tables and adding rows to them crashes in official exceljs. This is critical for template-based workflows.
+
+**Code:**
+```javascript
+// ✅ Works in @protobi/exceljs
+// ❌ Crashes in official exceljs with "Cannot read properties of undefined (reading 'length')"
+
+const workbook = new Excel.Workbook();
+await workbook.xlsx.readFile('template.xlsx');
+
+const worksheet = workbook.getWorksheet('Data');
+const table = worksheet.getTable('MyTable');
+
+// Add rows to the loaded table
+table.addRow(['New', 'Data', 'Here']); // Works!
+table.addRow(['More', 'Data', 'Here']); // Works!
+
+await workbook.xlsx.writeFile('output.xlsx');
+```
+
+**What it fixes:**
+- "Cannot read properties of undefined (reading 'length')" error
+- Missing worksheet references in loaded tables
+- Table references not expanding dynamically when rows are added
+- Excel filter buttons disappearing after save
+
+**Files changed:**
+- `lib/doc/table.js` - Dynamic table reference updates, autoFilterRef handling
+- `lib/doc/worksheet.js` - Table loading compatibility fixes
+
+**Upstream status:** Adopted from [rmartin93/exceljs-fork](https://github.com/rmartin93/exceljs-fork), preparing upstream PR
+
+### 4. Enhanced Bug Fixes
 
 See "Status Tracking" section above for 6 bug fixes adopted from upstream PRs.
 
@@ -226,6 +268,7 @@ npm run test:integration -- --grep "Pivot Tables"
 - ✅ All upstream tests (197 passing)
 - ✅ Pivot table count metric tests
 - ✅ Multiple pivot tables tests
+- ✅ Table addRow() workflow tests
 
 ---
 
@@ -267,7 +310,8 @@ We actively monitor upstream for:
 **Current watch list:**
 - 6 adopted PRs awaiting merge (#2851, #2915, #2956, #2973, #2978, #2885)
 - 3 original PRs awaiting merge (#2995, #2996, #2997)
-- **Total: 9 PRs** submitted to upstream
+- 1 community fork contribution preparing (#23 → TBD)
+- **Total: 9 PRs** submitted to upstream, 1 preparing
 
 **Update frequency:** Monthly check for upstream progress
 
@@ -292,5 +336,5 @@ See [LICENSE](LICENSE)
 ---
 
 **Last Updated:** 2025-11-07
-**Watching:** 9 upstream PRs awaiting review/merge
-**Status:** Active maintenance until upstream merge - All features submitted!
+**Watching:** 9 upstream PRs awaiting review/merge, 1 preparing
+**Status:** Active maintenance until upstream merge - Continuing to adopt community contributions!
