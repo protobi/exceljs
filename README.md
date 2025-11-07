@@ -1496,17 +1496,53 @@ pivotSheet2.addPivotTable({
 });
 ```
 
+### Preserving Custom Column Widths
+
+By default, Excel's pivot table styles control column widths, which can override any custom widths you set on the worksheet. To preserve your custom column widths:
+
+```javascript
+const dataSheet = workbook.addWorksheet('Data');
+// ... add your data ...
+
+const pivotSheet = workbook.addWorksheet('Report');
+
+// Set custom column widths
+pivotSheet.getColumn(1).width = 30;  // Wide column for labels
+pivotSheet.getColumn(2).width = 15;  // Narrower for data
+
+// Create pivot table that preserves these widths
+pivotSheet.addPivotTable({
+  sourceSheet: dataSheet,
+  rows: ['Region', 'Product'],
+  columns: ['Quarter'],
+  values: ['Amount'],
+  metric: 'sum',
+  applyWidthHeightFormats: '0',  // Preserve worksheet column widths
+});
+```
+
+**When to use `applyWidthHeightFormats: '0'`:**
+- You need specific column widths for labels or data
+- You're generating reports with consistent formatting requirements
+- You want text wrapping to work with your custom widths
+
+**Default behavior (`applyWidthHeightFormats: '1'`):**
+- Excel applies the pivot table style's auto-sizing
+- Column widths adjust based on content
+- Standard Excel pivot table behavior
+
 ### Pivot Table Properties
 
 The following properties are supported in the pivot table configuration:
 
-| Property     | Type       | Required | Description                                                                 |
-| ------------ | ---------- | -------- | --------------------------------------------------------------------------- |
-| sourceSheet  | Worksheet  | Y        | The worksheet containing the source data. The entire sheet range is used.   |
-| rows         | String[]   | Y        | Array of field names to use as row dimensions (must exist in first row)    |
-| columns      | String[]   | Y        | Array of field names to use as column dimensions (must exist in first row) |
-| values       | String[]   | Y        | Array of field names to aggregate (currently only 1 value is supported)    |
-| metric       | String     | N        | Aggregation function (currently only 'sum' is supported). Default: 'sum'   |
+| Property                  | Type       | Required | Description                                                                 |
+| ------------------------- | ---------- | -------- | --------------------------------------------------------------------------- |
+| sourceSheet               | Worksheet  | Y        | The worksheet containing the source data. The entire sheet range is used.   |
+| rows                      | String[]   | Y        | Array of field names to use as row dimensions (must exist in first row)    |
+| columns                   | String[]   | Y        | Array of field names to use as column dimensions (must exist in first row) |
+| values                    | String[]   | Y        | Array of field names to aggregate (currently only 1 value is supported)    |
+| metric                    | String     | N        | Aggregation function (currently only 'sum' is supported). Default: 'sum'   |
+| applyWidthHeightFormats   | String     | N        | Controls column width behavior: '1' = apply pivot table style (default), '0' = preserve worksheet column widths |
 
 ### Important Notes
 
