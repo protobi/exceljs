@@ -25,6 +25,42 @@ The user may want to:
 
 Only exception: purely documentary changes explicitly requested (and even then, confirm first).
 
+## ⚠️ CRITICAL: All Commits Must Reference GitHub Issues
+
+**EVERY commit must reference a GitHub issue.**
+
+**Workflow:**
+1. Before starting work, check if a relevant issue exists
+2. If no issue exists, create one first describing the problem/feature
+3. In commit messages, reference the issue using format: `Update #99 Description of change`
+4. After committing, add a comment on the issue with the commit hash
+
+**Commit Message Format:**
+```
+Update #4 Fix XML special character escaping in pivot tables
+
+Detailed description of what was changed and why.
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>
+```
+
+**Why:**
+- Provides context and discussion history for every change
+- Makes it easier to track what changes solved which problems
+- Helps when reviewing git history or creating release notes
+- Enables better collaboration and code review
+
+**Creating Issues:**
+```bash
+# Create an issue
+gh issue create --repo protobi/exceljs --title "Brief description" --body "Detailed description"
+
+# Link commit to issue (after committing)
+gh issue comment <issue-number> --repo protobi/exceljs --body "Fixed in commit <hash>"
+```
+
 ## Version Management Strategy
 
 ### Version Number Format
