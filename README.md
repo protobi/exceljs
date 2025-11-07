@@ -18,6 +18,7 @@ npm install exceljs
 
 # New Features!
 
+* **Multiple Pivot Tables Support** - The library now supports adding multiple pivot tables per workbook. Previously limited to one pivot table per file, you can now create as many pivot tables as needed across different worksheets. See [Pivot Tables](#pivot-tables) for details.
 * Merged [Add pivot table with limitations #2551](https://github.com/exceljs/exceljs/pull/2551). <br/> Many thanks to Protobi and <a href="https://github.com/mikez">Michael</a> for this contribution!
 * Merged [fix: styles rendering in case when "numFmt" is present in conditional formatting rules (resolves #1814) #1815](https://github.com/exceljs/exceljs/pull/1815). <br/> Many thanks to [@andreykrupskii](https://github.com/andreykrupskii) for this contribution!
 * Merged [inlineStr cell type support #1575 #1576](https://github.com/exceljs/exceljs/pull/1576). <br/> Many thanks to [@drdmitry](https://github.com/drdmitry) for this contribution!
@@ -110,6 +111,7 @@ To be clear, all contributions added to this library will be included in the lib
       <li><a href="#data-validations">Data Validations</a></li>
       <li><a href="#cell-comments">Cell Comments</a></li>
       <li><a href="#tables">Tables</a></li>
+      <li><a href="#pivot-tables">Pivot Tables</a></li>
       <li><a href="#styles">Styles</a>
         <ul>
           <li><a href="#number-formats">Number Formats</a></li>
@@ -1424,6 +1426,133 @@ column.totalsRowResult = 10;
 
 // commit the table changes into the sheet
 table.commit();
+```
+
+
+## Pivot Tables[⬆](#contents)<!-- Link generated with jump2header -->
+
+Pivot tables provide powerful data analysis capabilities by summarizing and reorganizing data from a source worksheet.
+
+**⚠️ Note:** Pivot Table support is experimental. Please leave feedback at https://github.com/exceljs/exceljs/discussions/2575
+
+### Creating a Pivot Table
+
+To add a pivot table to a worksheet, call `addPivotTable` with a configuration object:
+
+```javascript
+const ExcelJS = require('exceljs');
+const workbook = new ExcelJS.Workbook();
+
+// Create source data worksheet
+const sourceSheet = workbook.addWorksheet('Data');
+sourceSheet.addRows([
+  ['Region', 'Product', 'Category', 'Quarter', 'Amount'],
+  ['North', 'Widget A', 'Electronics', 'Q1', 1000],
+  ['South', 'Widget B', 'Electronics', 'Q1', 1500],
+  ['North', 'Widget A', 'Electronics', 'Q2', 1200],
+  ['South', 'Widget B', 'Home', 'Q2', 1800],
+  ['East', 'Widget C', 'Home', 'Q1', 2000],
+  ['West', 'Widget C', 'Home', 'Q2', 2200],
+]);
+
+// Create pivot table on a new worksheet
+const pivotSheet = workbook.addWorksheet('Pivot');
+pivotSheet.addPivotTable({
+  sourceSheet: sourceSheet,
+  rows: ['Region', 'Product'],
+  columns: ['Quarter'],
+  values: ['Amount'],
+  metric: 'sum',
+});
+
+await workbook.xlsx.writeFile('pivot-example.xlsx');
+```
+
+### Multiple Pivot Tables
+
+As of this version, **multiple pivot tables per workbook are supported**. You can add pivot tables to different worksheets:
+
+```javascript
+// First pivot table
+const pivotSheet1 = workbook.addWorksheet('Sales by Region');
+pivotSheet1.addPivotTable({
+  sourceSheet: dataSheet,
+  rows: ['Region'],
+  columns: ['Quarter'],
+  values: ['Amount'],
+  metric: 'sum',
+});
+
+// Second pivot table with different configuration
+const pivotSheet2 = workbook.addWorksheet('Sales by Product');
+pivotSheet2.addPivotTable({
+  sourceSheet: dataSheet,
+  rows: ['Product', 'Category'],
+  columns: ['Quarter'],
+  values: ['Amount'],
+  metric: 'sum',
+});
+```
+
+### Pivot Table Properties
+
+The following properties are supported in the pivot table configuration:
+
+| Property     | Type       | Required | Description                                                                 |
+| ------------ | ---------- | -------- | --------------------------------------------------------------------------- |
+| sourceSheet  | Worksheet  | Y        | The worksheet containing the source data. The entire sheet range is used.   |
+| rows         | String[]   | Y        | Array of field names to use as row dimensions (must exist in first row)    |
+| columns      | String[]   | Y        | Array of field names to use as column dimensions (must exist in first row) |
+| values       | String[]   | Y        | Array of field names to aggregate (currently only 1 value is supported)    |
+| metric       | String     | N        | Aggregation function (currently only 'sum' is supported). Default: 'sum'   |
+
+### Important Notes
+
+**Field Names:**
+- Field names must match column headers in the first row of the source sheet exactly
+- Field names are case-sensitive
+
+**Source Data:**
+- The pivot table uses the entire source worksheet data
+- The first row is treated as headers
+- All data rows below the header row will be included in the pivot table
+
+**Current Limitations:**
+- **Write-only:** Pivot tables can be created and written to XLSX files, but **reading pivot table definitions from existing files is not yet implemented**. When you read an Excel file containing pivot tables:
+  - The pivot table data will be preserved if you write the file back out
+  - However, `workbook.pivotTables` will be empty - you cannot programmatically access or modify existing pivot tables
+  - The generated Excel files work perfectly when opened in Excel with full pivot table functionality
+- **Single value field:** Only one value field is supported per pivot table (`values` array must contain exactly 1 item)
+- **Single metric:** Only the `sum` aggregation metric is currently supported (no count, average, min, max, etc.)
+- **Source data requirements:**
+  - Source data must have headers in the first row
+  - All column headers must be unique
+  - The entire source sheet range is used (you cannot specify a partial range)
+- **Placement:** The pivot table will be placed starting at cell A1 on the destination worksheet
+- **No calculated fields:** Custom calculations, calculated fields, or computed columns are not supported
+- **No formatting options:** Pivot table styling and formatting options (besides the default) are not configurable
+- **No filters:** You cannot programmatically set filters on the pivot table (though they work interactively in Excel)
+
+### Example Output
+
+When you open the generated Excel file, the pivot table will be interactive and fully functional in Excel, allowing you to:
+- Expand/collapse row and column groups
+- Filter data using the pivot table controls
+- Refresh the pivot table if source data changes
+
+### Accessing Pivot Tables
+
+Pivot tables are stored in the workbook and worksheet models:
+
+```javascript
+// Access all pivot tables in the workbook
+console.log('Total pivot tables:', workbook.pivotTables.length);
+
+// Access pivot tables in a specific worksheet
+const pivotTables = worksheet.pivotTables;
+pivotTables.forEach(pt => {
+  console.log('Pivot table with cache ID:', pt.cacheId);
+});
 ```
 
 
