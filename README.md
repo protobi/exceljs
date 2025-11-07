@@ -23,7 +23,7 @@ All features are submitted to upstream. [See merge status →](FORK.md)
 
 Below is a systematic review of open pull requests on the master repo.
 Each are classified by complexity, completeness, salience, and type, and prioritized.
-https://github.com/protobi/protobi-operations/wiki/Security-Assessment-Report--%E2%80%90-November-2025
+https://github.com/protobi/exceljs/wiki/Analysis-of-open-pull-requests-in-ExcelJS
 
 ## Installation
 
