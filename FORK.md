@@ -63,3 +63,123 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on:
 The upstream ExcelJS repository became largely dormant. Rather than attempting to become a general replacement (which would be a massive maintenance burden), we maintain this fork for specific features we need in production.
 
 If the upstream becomes active again, we'd happily contribute changes back and potentially sunset this fork.
+
+---
+
+## Maintainer Guide: Working with Upstream
+
+### Remote Setup
+
+The repository has two remotes configured:
+- `origin` - Your fork (protobi/exceljs)
+- `upstream` - Original repository (exceljs/exceljs)
+
+```bash
+# View remotes
+git remote -v
+
+# Fetch latest from upstream
+git fetch upstream
+```
+
+### Adopting Upstream PRs
+
+When you find a valuable PR in the upstream repository:
+
+```bash
+# 1. Fetch the PR branch (replace 2850 with PR number)
+git fetch upstream pull/2850/head:pr-2850
+
+# 2. Review the changes
+git log master..pr-2850
+git diff master..pr-2850
+
+# 3. Test locally
+git checkout pr-2850
+npm install
+npm test
+
+# 4. If good, merge into master
+git checkout master
+git merge pr-2850 --no-ff -m "Adopt upstream PR #2850: Description"
+
+# 5. Push to fork
+git push origin master
+```
+
+**Alternative: Cherry-pick specific commits**
+```bash
+git cherry-pick <commit-hash>
+```
+
+### Submitting PRs to Upstream
+
+When you want to contribute a feature back to upstream:
+
+```bash
+# 1. Create a clean branch from the feature commits
+git checkout -b upstream-pr/feature-name <commit-before-fork-changes>
+
+# 2. Cherry-pick or merge the feature commits (exclude fork-specific commits)
+git cherry-pick <feature-commit-1> <feature-commit-2>
+
+# 3. Ensure tests pass
+npm test
+
+# 4. Push to your fork
+git push origin upstream-pr/feature-name
+
+# 5. Create PR to upstream
+gh pr create --repo exceljs/exceljs --base master --head protobi:upstream-pr/feature-name
+```
+
+**Note:** The README.md has minimal fork references, making PRs cleaner.
+
+### Syncing with Upstream Changes
+
+If upstream gets new commits you want:
+
+```bash
+# Fetch latest
+git fetch upstream
+
+# Review what's new
+git log master..upstream/master
+
+# Merge upstream changes (creates merge commit)
+git merge upstream/master
+
+# Or rebase your fork commits on top of upstream (cleaner history)
+git rebase upstream/master
+
+# Push to your fork
+git push origin master
+```
+
+### Version Management
+
+**We do NOT bump package.json version** to keep PRs clean and avoid conflicts.
+
+Instead, use git tags for fork releases:
+
+```bash
+# Tag a fork release
+git tag -a v4.4.0-protobi.1 -m "Fork release: Multiple pivot tables"
+git push origin v4.4.0-protobi.1
+
+# Users install via:
+# npm install protobi/exceljs#v4.4.0-protobi.1
+```
+
+### Checking Fork Status
+
+```bash
+# See commits in fork not in upstream
+git log upstream/master..master
+
+# See commits in upstream not in fork
+git log master..upstream/master
+
+# Compare branches
+git diff upstream/master..master
+```
