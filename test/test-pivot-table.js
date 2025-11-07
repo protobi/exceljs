@@ -35,6 +35,16 @@ function main(filepath) {
     metric: 'sum', // only 'sum' possible for now
   });
 
+  // Add a second pivot table to test multiple pivot tables support
+  const worksheet3 = workbook.addWorksheet('Sheet3');
+  worksheet3.addPivotTable({
+    sourceSheet: worksheet1,
+    rows: ['A'],
+    columns: ['C'],
+    values: ['G'], // different value column
+    metric: 'sum',
+  });
+
   save(workbook, filepath);
 }
 
