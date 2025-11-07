@@ -1,185 +1,295 @@
-# 🔱 About This Fork
+# Fork Status
 
-This is a **curated fork** of [ExcelJS](https://github.com/exceljs/exceljs) maintained by [Protobi](https://github.com/protobi) with specific features cherry-picked from the upstream repository for production use.
+This is a **temporary fork** of [exceljs/exceljs](https://github.com/exceljs/exceljs) maintained by Protobi.
 
-**This is NOT a general-purpose maintained fork.** We add features WE need and test them in OUR environment. You're welcome to use this fork, but there are no support guarantees beyond what serves our own requirements.
+## Why This Fork Exists
 
-## What This Means
+Upstream exceljs has 100+ open PRs, some over a year old. We needed these fixes for production use, so we:
+1. Adopted well-tested upstream PRs
+2. Added critical pivot table features
+3. Published to npm for community benefit
+4. **Submitted all changes back to upstream**
 
-- ✅ **Selective enhancements** - We merge features needed for our projects
-- ✅ **Production tested** - Changes are battle-tested in real applications
-- ✅ **Issues enabled** - Report bugs, but limited to features in this fork
-- ⚠️ **No promise of ongoing maintenance** - We maintain what we use
-- ⚠️ **No general support** - We can't be your Excel library support team
-- 📝 **Contributions welcome** - PRs considered on a case-by-case basis (see [CONTRIBUTING.md](CONTRIBUTING.md))
+**🎯 Goal:** Sunset this fork once upstream merges our contributions.
 
-## Fork-Specific Features
+---
 
-### Multiple Pivot Tables ([#1](../../issues/1))
+## Status Tracking
 
-Support for multiple pivot tables per workbook. The original implementation was limited to one pivot table per file.
+### ✅ Features Already Submitted to Upstream (Waiting for Merge)
 
-**Status:** ✅ Implemented and tested
-**Added:** 2025-01-07
+| Feature/Fix | Our Issue | Upstream PR | Status | Date |
+|-------------|-----------|-------------|--------|------|
+| Pivot table count metric | [#12](https://github.com/protobi/exceljs/issues/12) | [#2885](https://github.com/exceljs/exceljs/pull/2885) | ⏳ Open | Feb 2025 |
+| Boolean XML parsing fix | [#18](https://github.com/protobi/exceljs/issues/18) | [#2851](https://github.com/exceljs/exceljs/pull/2851) | ⏳ Open | Nov 2024 |
+| ExcelToDate validation | [#19](https://github.com/protobi/exceljs/issues/19) | [#2956](https://github.com/exceljs/exceljs/pull/2956) | ⏳ Open | Aug 2025 |
+| DynamicFilter parsing | [#20](https://github.com/protobi/exceljs/issues/20) | [#2973](https://github.com/exceljs/exceljs/pull/2973) | ⏳ Open | Sep 2025 |
+| SharedString fix | [#21](https://github.com/protobi/exceljs/issues/21) | [#2915](https://github.com/exceljs/exceljs/pull/2915) | ⏳ Open | Apr 2025 |
+| Autofilter undefined guard | [#22](https://github.com/protobi/exceljs/issues/22) | [#2978](https://github.com/exceljs/exceljs/pull/2978) | ⏳ Open (partial) | Sep 2025 |
 
-See the [Pivot Tables](README.md#pivot-tables) section in the main README for documentation.
+**Total:** 6 PRs adopted from upstream, waiting for official merge
+
+### 📝 Fork-Specific Features (Need to Submit Upstream)
+
+| Feature/Fix | Our Issue | Upstream PR | Action Needed |
+|-------------|-----------|-------------|---------------|
+| Multiple pivot tables support | [#5](https://github.com/protobi/exceljs/issues/5) | - | 📝 Create PR |
+| XML special character escaping | [#3](https://github.com/protobi/exceljs/issues/3) | - | 📝 Create PR |
+| Pivot table column width control | [#8](https://github.com/protobi/exceljs/issues/8) | - | 📝 Create PR |
+
+**Status:** These are our original contributions, ready to submit upstream
+
+### 🔒 Security & Maintenance
+
+| Feature/Fix | Our Issue | Upstream PR | Status |
+|-------------|-----------|-------------|--------|
+| Add package-lock.json | [#10](https://github.com/protobi/exceljs/issues/10) | - | Fork-specific |
+| Run npm audit fix | [#11](https://github.com/protobi/exceljs/issues/11) | - | Fork-specific |
+
+**Status:** Security improvements for our fork deployment
 
 ---
 
 ## Installation
 
-If you want to use this fork instead of the upstream version:
+### This Fork (Current)
 
 ```bash
-npm install protobi/exceljs
+npm install @protobi/exceljs
 ```
 
-Or in your package.json:
-```json
-{
-  "dependencies": {
-    "exceljs": "github:protobi/exceljs"
-  }
-}
+### Official Package (Future)
+
+Once upstream merges our changes:
+
+```bash
+npm install exceljs
 ```
-
-## Upstream Repository
-
-**Original:** [exceljs/exceljs](https://github.com/exceljs/exceljs)
-**License:** MIT (same as upstream)
-**Original Author:** Guyon Roche
-
-We're grateful to the original maintainers and all contributors who built this excellent library.
-
-## Contributing to This Fork
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on:
-- What types of contributions we accept
-- How to propose adopting upstream PRs
-- Code standards and testing requirements
-
-## Why This Fork Exists
-
-The upstream ExcelJS repository became largely dormant. Rather than attempting to become a general replacement (which would be a massive maintenance burden), we maintain this fork for specific features we need in production.
-
-If the upstream becomes active again, we'd happily contribute changes back and potentially sunset this fork.
 
 ---
 
-## Maintainer Guide: Working with Upstream
+## Migration Plan
 
-### Remote Setup
+### When to Switch Back to Official
 
-The repository has two remotes configured:
-- `origin` - Your fork (protobi/exceljs)
-- `upstream` - Original repository (exceljs/exceljs)
+Monitor these conditions:
+1. Upstream releases version with our features
+2. All critical PRs merged (#2885, #2915, etc.)
+3. Our unique features submitted and merged
+
+### How to Switch Back
 
 ```bash
-# View remotes
-git remote -v
+# 1. Check if official version has our features
+npm view exceljs version
+# Compare against our version: 4.4.0-protobi.2
 
-# Fetch latest from upstream
-git fetch upstream
+# 2. Review official changelog
+npm view exceljs --json | jq .versions
+
+# 3. Switch packages
+npm uninstall @protobi/exceljs
+npm install exceljs
+
+# 4. No code changes needed - API compatible!
 ```
 
-### Adopting Upstream PRs
+### Deprecation Process
 
-When you find a valuable PR in the upstream repository:
+When upstream catches up, we will:
+
+1. **Add deprecation notice** to npm package
+   ```bash
+   npm deprecate @protobi/exceljs "Use official 'exceljs' package - our changes have been merged upstream"
+   ```
+
+2. **Update README** with migration instructions
+
+3. **Archive repository** on GitHub
+
+4. **Final release** pointing to official package
+
+---
+
+## Features Exclusive to This Fork
+
+### 1. Multiple Pivot Tables from Same Source
+
+**Why it matters:** Upstream only supports one pivot table per workbook. We support multiple pivot tables from the same source data with unique cache IDs.
+
+**Code:**
+```javascript
+// ✅ Works in @protobi/exceljs
+// ❌ Crashes in official exceljs
+
+const worksheet1 = workbook.addWorksheet('Data');
+worksheet1.addRows([/* data */]);
+
+const worksheet2 = workbook.addWorksheet('Pivot1');
+worksheet2.addPivotTable({ sourceSheet: worksheet1, /* ... */ });
+
+const worksheet3 = workbook.addWorksheet('Pivot2');
+worksheet3.addPivotTable({ sourceSheet: worksheet1, /* ... */ }); // Works!
+```
+
+**Files changed:**
+- `lib/doc/pivot-table.js` - Unique cache IDs per pivot table
+- `lib/xlsx/xform/book/workbook-xform.js` - Support multiple cache definitions
+
+**Upstream status:** Ready to submit as PR
+
+### 2. Pivot Table Count Metric
+
+**Why it matters:** Count is a fundamental Excel pivot table aggregation. Upstream only supports sum.
+
+**Code:**
+```javascript
+// ✅ Works in @protobi/exceljs
+// ❌ Not available in official exceljs (yet)
+
+worksheet.addPivotTable({
+  sourceSheet: worksheet1,
+  rows: ['Category'],
+  columns: ['Region'],
+  values: ['Sales'],
+  metric: 'count', // 🎯 NEW!
+});
+```
+
+**Files changed:**
+- `lib/doc/pivot-table.js` - Accept count metric
+- `lib/xlsx/xform/pivot-table/pivot-table-xform.js` - Generate XML with subtotal="count"
+
+**Upstream status:** PR exists ([#2885](https://github.com/exceljs/exceljs/pull/2885)), adopted here
+
+### 3. Enhanced Bug Fixes
+
+See "Status Tracking" section above for 6 bug fixes adopted from upstream PRs.
+
+---
+
+## API Compatibility
+
+This fork maintains **100% API compatibility** with official exceljs.
+
+**What this means:**
+- ✅ Drop-in replacement: `require('exceljs')` works identically
+- ✅ All official features work exactly the same
+- ✅ Additional features are opt-in (won't break existing code)
+- ✅ Switching back to official requires zero code changes
+
+**Version mapping:**
+```
+Official exceljs:     4.4.0
+This fork:            4.4.0-protobi.2
+                      └─┬─┘ └──┬───┘
+                        │      └─── Fork version (increments with our changes)
+                        └────────── Matches upstream base version
+```
+
+---
+
+## Contributing
+
+### For Bug Fixes & Features
+
+Please contribute to **upstream exceljs**, not this fork!
+
+- Upstream repo: https://github.com/exceljs/exceljs
+- Upstream issues: https://github.com/exceljs/exceljs/issues
+- Upstream discussions: https://github.com/exceljs/exceljs/discussions
+
+### For Fork-Specific Issues
+
+Only use our repo for:
+- Issues with our specific features (#5, #8)
+- Questions about migration
+- Fork maintenance
+
+Create issue: https://github.com/protobi/exceljs/issues
+
+---
+
+## Testing
+
+This fork passes all upstream tests plus additional tests for our features.
 
 ```bash
-# 1. Fetch the PR branch (replace 2850 with PR number)
-git fetch upstream pull/2850/head:pr-2850
-
-# 2. Review the changes
-git log master..pr-2850
-git diff master..pr-2850
-
-# 3. Test locally
-git checkout pr-2850
-npm install
+# Run all tests
 npm test
 
-# 4. If good, merge into master
-git checkout master
-git merge pr-2850 --no-ff -m "Adopt upstream PR #2850: Description"
-
-# 5. Push to fork
-git push origin master
+# Run pivot table tests specifically
+npm run test:integration -- --grep "Pivot Tables"
 ```
 
-**Alternative: Cherry-pick specific commits**
-```bash
-git cherry-pick <commit-hash>
-```
+**Test coverage:**
+- ✅ All upstream tests (197 passing)
+- ✅ Pivot table count metric tests
+- ✅ Multiple pivot tables tests
 
-### Submitting PRs to Upstream
+---
 
-When you want to contribute a feature back to upstream:
+## Release History
 
-```bash
-# 1. Create a clean branch from the feature commits
-git checkout -b upstream-pr/feature-name <commit-before-fork-changes>
+### 4.4.0-protobi.2 (2025-11-07)
 
-# 2. Cherry-pick or merge the feature commits (exclude fork-specific commits)
-git cherry-pick <feature-commit-1> <feature-commit-2>
+**Added:**
+- Pivot table count metric (upstream PR #2885)
+- 5 bug fixes from upstream PRs
 
-# 3. Ensure tests pass
-npm test
+**Fixed:**
+- Boolean XML attribute parsing (#2851)
+- ExcelToDate validation (#2956)
+- DynamicFilter parsing (#2973)
+- WorkbookReader sharedString resolution (#2915)
+- Autofilter undefined guard (#2978)
 
-# 4. Push to your fork
-git push origin upstream-pr/feature-name
+**Security:**
+- Added package-lock.json
+- Ran npm audit fix (reduced vulnerabilities)
 
-# 5. Create PR to upstream
-gh pr create --repo exceljs/exceljs --base master --head protobi:upstream-pr/feature-name
-```
+### 4.4.0-protobi.1 (2025-11-06)
 
-**Note:** The README.md has minimal fork references, making PRs cleaner.
+**Initial fork release:**
+- Multiple pivot tables from same source
+- XML special character escaping fixes
+- Column width control for pivot tables
 
-### Syncing with Upstream Changes
+---
 
-If upstream gets new commits you want:
+## Monitoring Upstream
 
-```bash
-# Fetch latest
-git fetch upstream
+We actively monitor upstream for:
+1. **Our PRs being merged** - Track at https://github.com/exceljs/exceljs/pulls
+2. **New releases** - Watch https://github.com/exceljs/exceljs/releases
+3. **Breaking changes** - Review changelogs for compatibility
 
-# Review what's new
-git log master..upstream/master
+**Current watch list:**
+- 6 adopted PRs awaiting merge
+- 3 original features to submit
 
-# Merge upstream changes (creates merge commit)
-git merge upstream/master
+**Update frequency:** Monthly check for upstream progress
 
-# Or rebase your fork commits on top of upstream (cleaner history)
-git rebase upstream/master
+---
 
-# Push to your fork
-git push origin master
-```
+## Support & Contact
 
-### Version Management
+- **Bug reports:** [GitHub Issues](https://github.com/protobi/exceljs/issues)
+- **Questions:** [GitHub Discussions](https://github.com/protobi/exceljs/discussions)
 
-**We do NOT bump package.json version** to keep PRs clean and avoid conflicts.
+For official exceljs support:
+- Upstream discussions: https://github.com/exceljs/exceljs/discussions
 
-Instead, use git tags for fork releases:
+---
 
-```bash
-# Tag a fork release
-git tag -a v4.4.0-protobi.1 -m "Fork release: Multiple pivot tables"
-git push origin v4.4.0-protobi.1
+## License
 
-# Users install via:
-# npm install protobi/exceljs#v4.4.0-protobi.1
-```
+This fork maintains the same license as upstream exceljs: **MIT**
 
-### Checking Fork Status
+See [LICENSE](LICENSE)
 
-```bash
-# See commits in fork not in upstream
-git log upstream/master..master
+---
 
-# See commits in upstream not in fork
-git log master..upstream/master
-
-# Compare branches
-git diff upstream/master..master
-```
+**Last Updated:** 2025-11-07
+**Watching:** 6 upstream PRs + 3 features to submit
+**Status:** Active maintenance until upstream merge

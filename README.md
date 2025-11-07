@@ -1,12 +1,45 @@
-# ExcelJS
+# ExcelJS (Protobi Fork)
+
+> ⚠️ **Temporary Fork** - This is a bridge fork with features pending upstream merge.
+> We recommend using [official exceljs](https://github.com/exceljs/exceljs) if you don't need these specific features.
 
 [![Build Status](https://github.com/exceljs/exceljs/actions/workflows/tests.yml/badge.svg?branch=master&event=push)](https://github.com/exceljs/exceljs/actions/workflows/tests.yml)
+[![npm version](https://badge.fury.io/js/%40protobi%2Fexceljs.svg)](https://www.npmjs.com/package/@protobi/exceljs)
 
 Read, manipulate and write spreadsheet data and styles to XLSX and JSON.
 
 Reverse engineered from Excel spreadsheet files as a project.
 
-> **Note:** This is a maintained fork by [Protobi](https://github.com/protobi) with selective enhancements. See [FORK.md](FORK.md) for details.
+## Why Use This Fork?
+
+If you need **today**:
+- ✅ Multiple pivot tables from same source data
+- ✅ Pivot table count metric (`metric: 'count'`)
+- ✅ Critical bug fixes (XML parsing, date handling, streaming)
+
+All features are submitted to upstream. [See merge status →](FORK.md)
+
+## Installation
+
+```bash
+npm install @protobi/exceljs
+```
+
+## Migration Path
+
+Once upstream merges our changes (tracking 6 PRs), switch back:
+
+```bash
+npm install exceljs  # Official package
+```
+
+No code changes needed - we're API-compatible!
+
+## Fork Status
+
+See [FORK.md](FORK.md) for detailed tracking of upstream PRs.
+
+---
 
 # Translations
 

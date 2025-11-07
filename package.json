@@ -1,7 +1,7 @@
 {
-  "name": "exceljs",
-  "version": "4.4.0-protobi.1",
-  "description": "Excel Workbook Manager - Read and Write xlsx and csv Files. (Protobi fork with curated enhancements)",
+  "name": "@protobi/exceljs",
+  "version": "4.4.0-protobi.2",
+  "description": "Excel Workbook Manager - Temporary fork with pivot table enhancements and bug fixes pending upstream merge",
   "private": false,
   "license": "MIT",
   "author": {
@@ -11,6 +11,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/protobi/exceljs.git"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/exceljs"
   },
   "engines": {
     "node": ">=8.3.0"
@@ -93,7 +97,11 @@
     "views",
     "frozen",
     "split",
-    "pageSetup"
+    "pageSetup",
+    "pivot-tables",
+    "pivot-table",
+    "fork",
+    "temporary-fork"
   ],
   "dependencies": {
     "archiver": "^5.0.0",
