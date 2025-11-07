@@ -26,8 +26,9 @@ Upstream exceljs has 100+ open PRs, some over a year old. We needed these fixes 
 | DynamicFilter parsing | [#20](https://github.com/protobi/exceljs/issues/20) | [#2973](https://github.com/exceljs/exceljs/pull/2973) | ⏳ Open | Sep 2025 |
 | SharedString fix | [#21](https://github.com/protobi/exceljs/issues/21) | [#2915](https://github.com/exceljs/exceljs/pull/2915) | ⏳ Open | Apr 2025 |
 | Autofilter undefined guard | [#22](https://github.com/protobi/exceljs/issues/22) | [#2978](https://github.com/exceljs/exceljs/pull/2978) | ⏳ Open (partial) | Sep 2025 |
+| Image reuse fix | [#24](https://github.com/protobi/exceljs/issues/24) | [#2876](https://github.com/exceljs/exceljs/pull/2876) | ⏳ Open | Feb 2024 |
 
-**Total:** 6 PRs adopted from upstream, waiting for official merge
+**Total:** 7 PRs adopted from upstream, waiting for official merge
 
 ### 📝 Fork-Specific Features (Submitted to Upstream)
 
@@ -308,10 +309,10 @@ We actively monitor upstream for:
 3. **Breaking changes** - Review changelogs for compatibility
 
 **Current watch list:**
-- 6 adopted PRs awaiting merge (#2851, #2915, #2956, #2973, #2978, #2885)
+- 7 adopted PRs awaiting merge (#2851, #2876, #2915, #2956, #2973, #2978, #2885)
 - 3 original PRs awaiting merge (#2995, #2996, #2997)
 - 1 community fork contribution awaiting merge (#2998)
-- **Total: 10 PRs** submitted to upstream
+- **Total: 11 PRs** watching upstream
 
 **Update frequency:** Monthly check for upstream progress
 
@@ -336,5 +337,5 @@ See [LICENSE](LICENSE)
 ---
 
 **Last Updated:** 2025-11-07
-**Watching:** 10 upstream PRs awaiting review/merge
+**Watching:** 11 upstream PRs awaiting review/merge
 **Status:** Active maintenance until upstream merge - Continuing to adopt community contributions!
