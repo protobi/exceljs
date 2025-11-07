@@ -138,7 +138,7 @@
     "grunt-terser": "^1.0.0",
     "husky": "^4.3.0",
     "lint-staged": "^10.2.13",
-    "mocha": "^7.2.0",
+    "mocha": "^11.7.5",
     "prettier-eslint": "^11.0.0",
     "prettier-eslint-cli": "^5.0.0",
     "regenerator-runtime": "^0.13.7",
