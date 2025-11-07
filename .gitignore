@@ -53,8 +53,6 @@ spec/integration/data/gold
 /spec/manual/public/exceljs.js
 /spec/manual/public/exceljs.min.js
 
-package-lock.json
-
 # optional switch off tests
 .disable-test-*
 
@@ -71,3 +69,8 @@ enpm-lock.yaml
 
 # private test space
 lab
+
+docs/security_review_2025.md
+docs/security_disclosure_guidelines.md
+docs/pullrequest_analysis.md
+docs
