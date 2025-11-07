@@ -43,9 +43,9 @@ Upstream exceljs has 100+ open PRs, some over a year old. We needed these fixes 
 
 | Feature/Fix | Our Issue | Source | Upstream PR | Status | Date |
 |-------------|-----------|--------|-------------|--------|------|
-| Table addRow() fix | [#23](https://github.com/protobi/exceljs/issues/23) | [rmartin93/exceljs-fork](https://github.com/rmartin93/exceljs-fork) | TBD | 🔄 Preparing | Nov 2025 |
+| Table addRow() fix | [#23](https://github.com/protobi/exceljs/issues/23) | [rmartin93/exceljs-fork](https://github.com/rmartin93/exceljs-fork) | [#2998](https://github.com/exceljs/exceljs/pull/2998) | ⏳ Open | Nov 2025 |
 
-**Status:** Adopted from community fork, preparing upstream submission
+**Status:** Adopted from community fork, submitted to upstream
 
 ### 🔒 Security & Maintenance
 
@@ -310,8 +310,8 @@ We actively monitor upstream for:
 **Current watch list:**
 - 6 adopted PRs awaiting merge (#2851, #2915, #2956, #2973, #2978, #2885)
 - 3 original PRs awaiting merge (#2995, #2996, #2997)
-- 1 community fork contribution preparing (#23 → TBD)
-- **Total: 9 PRs** submitted to upstream, 1 preparing
+- 1 community fork contribution awaiting merge (#2998)
+- **Total: 10 PRs** submitted to upstream
 
 **Update frequency:** Monthly check for upstream progress
 
@@ -336,5 +336,5 @@ See [LICENSE](LICENSE)
 ---
 
 **Last Updated:** 2025-11-07
-**Watching:** 9 upstream PRs awaiting review/merge, 1 preparing
+**Watching:** 10 upstream PRs awaiting review/merge
 **Status:** Active maintenance until upstream merge - Continuing to adopt community contributions!
