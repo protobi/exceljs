@@ -6,27 +6,7 @@ Read, manipulate and write spreadsheet data and styles to XLSX and JSON.
 
 Reverse engineered from Excel spreadsheet files as a project.
 
-## 🔱 About This Fork
-
-This is a **curated fork** maintained by [Protobi](https://github.com/protobi) with specific features cherry-picked from the [upstream ExcelJS repository](https://github.com/exceljs/exceljs) for production use.
-
-**This is NOT a general-purpose maintained fork.** We add features WE need and test them in OUR environment. You're welcome to use this fork, but there are no support guarantees beyond what serves our own requirements.
-
-### What This Means:
-- ✅ **Selective enhancements** - We merge features needed for our projects
-- ✅ **Production tested** - Changes are battle-tested in real applications
-- ✅ **Issues enabled** - Report bugs, but limited to features in this fork
-- ⚠️ **No promise of ongoing maintenance** - We maintain what we use
-- ⚠️ **No general support** - We can't be your Excel library support team
-- 📝 **Contributions welcome** - PRs considered on a case-by-case basis
-
-### Fork-Specific Features:
-- **Multiple Pivot Tables** ([#1](../../issues/1)) - Support for multiple pivot tables per workbook, not just one
-
-**Upstream Repository:** [exceljs/exceljs](https://github.com/exceljs/exceljs)
-**License:** MIT (same as upstream)
-
----
+> **Note:** This is a maintained fork by [Protobi](https://github.com/protobi) with selective enhancements. See [FORK.md](FORK.md) for details.
 
 # Translations
 
