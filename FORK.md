@@ -29,15 +29,15 @@ Upstream exceljs has 100+ open PRs, some over a year old. We needed these fixes 
 
 **Total:** 6 PRs adopted from upstream, waiting for official merge
 
-### 📝 Fork-Specific Features (Need to Submit Upstream)
+### 📝 Fork-Specific Features (Submitted to Upstream)
 
-| Feature/Fix | Our Issue | Upstream PR | Action Needed |
-|-------------|-----------|-------------|---------------|
-| Multiple pivot tables support | [#5](https://github.com/protobi/exceljs/issues/5) | - | 📝 Create PR |
-| XML special character escaping | [#3](https://github.com/protobi/exceljs/issues/3) | - | 📝 Create PR |
-| Pivot table column width control | [#8](https://github.com/protobi/exceljs/issues/8) | - | 📝 Create PR |
+| Feature/Fix | Our Issue | Upstream PR | Status | Date |
+|-------------|-----------|-------------|--------|------|
+| Multiple pivot tables support | [#5](https://github.com/protobi/exceljs/issues/5) | [#2995](https://github.com/exceljs/exceljs/pull/2995) | ⏳ Open | Nov 2025 |
+| XML special character escaping | [#3](https://github.com/protobi/exceljs/issues/3) | [#2996](https://github.com/exceljs/exceljs/pull/2996) | ⏳ Open | Nov 2025 |
+| Pivot table column width control | [#8](https://github.com/protobi/exceljs/issues/8) | [#2997](https://github.com/exceljs/exceljs/pull/2997) | ⏳ Open | Nov 2025 |
 
-**Status:** These are our original contributions, ready to submit upstream
+**Status:** All original contributions submitted, waiting for upstream review
 
 ### 🔒 Security & Maintenance
 
@@ -265,8 +265,9 @@ We actively monitor upstream for:
 3. **Breaking changes** - Review changelogs for compatibility
 
 **Current watch list:**
-- 6 adopted PRs awaiting merge
-- 3 original features to submit
+- 6 adopted PRs awaiting merge (#2851, #2915, #2956, #2973, #2978, #2885)
+- 3 original PRs awaiting merge (#2995, #2996, #2997)
+- **Total: 9 PRs** submitted to upstream
 
 **Update frequency:** Monthly check for upstream progress
 
@@ -291,5 +292,5 @@ See [LICENSE](LICENSE)
 ---
 
 **Last Updated:** 2025-11-07
-**Watching:** 6 upstream PRs + 3 features to submit
-**Status:** Active maintenance until upstream merge
+**Watching:** 9 upstream PRs awaiting review/merge
+**Status:** Active maintenance until upstream merge - All features submitted!
