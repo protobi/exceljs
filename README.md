@@ -19,6 +19,12 @@ If you need **today**:
 
 All features are submitted to upstream. [See merge status →](FORK.md)
 
+## Analysis of open pull requests
+
+Below is a systematic review of open pull requests on the master repo.
+Each are classified by complexity, completeness, salience, and type, and prioritized.
+https://github.com/protobi/protobi-operations/wiki/Security-Assessment-Report--%E2%80%90-November-2025
+
 ## Installation
 
 ```bash
