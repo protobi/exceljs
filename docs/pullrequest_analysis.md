@@ -455,8 +455,7 @@ Original Author: @dsilva01
 
 🤖 Generated with [Claude Code](https://claude.com/claude-code)
 
-Co-Authored-By: Claude <noreply@anthropic.com>
-Co-Authored-By: dsilva01 <original-email@example.com>"
+Co-Authored-By: exampledev <original-email@example.com>"
 
 # 6. Test and push
 npm test
