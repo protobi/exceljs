@@ -45,6 +45,10 @@ No code changes needed - we're API-compatible!
 
 See [FORK.md](FORK.md) for detailed tracking of upstream PRs.
 
+## Commercial Support
+
+Commercial support, consulting, and priority bug fixes are available for organizations using ExcelJS in production. Contact: [pieter@protobi.com](mailto:pieter@protobi.com)
+
 ---
 
 # Translations
@@ -1595,6 +1599,7 @@ The following properties are supported in the pivot table configuration:
 - All data rows below the header row will be included in the pivot table
 
 **Current Limitations:**
+- **Streaming not supported:** Pivot tables are **not supported with the streaming API** (`WorkbookWriter`). Pivot tables require reading all source data to generate the pivot cache, which conflicts with streaming's one-pass write model. Excel requires complete pivot cache data (all unique values and all data rows) at file creation time. Use the standard (non-streaming) `Workbook` API for workbooks with pivot tables.
 - **Write-only:** Pivot tables can be created and written to XLSX files, but **reading pivot table definitions from existing files is not yet implemented**. When you read an Excel file containing pivot tables:
   - The pivot table data will be preserved if you write the file back out
   - However, `workbook.pivotTables` will be empty - you cannot programmatically access or modify existing pivot tables
