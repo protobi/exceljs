@@ -125,7 +125,7 @@
     "browserify": "^16.5.2",
     "chai": "^4.2.0",
     "chai-datetime": "^1.7.0",
-    "chai-xml": "^0.3.2",
+    "chai-xml": "^0.4.1",
     "core-js": "^3.6.5",
     "dirty-chai": "^2.0.1",
     "eslint": "^6.5.1",
