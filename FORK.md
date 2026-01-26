@@ -143,6 +143,8 @@ Multiple pivot tables support, pivot table count metric, streaming limitations d
 | Multiple pivot tables support | [#5](https://github.com/protobi/exceljs/issues/5) | [#2995](https://github.com/exceljs/exceljs/pull/2995) | ⏳ Open | Nov 2025 |
 | XML special character escaping | [#3](https://github.com/protobi/exceljs/issues/3) | [#2996](https://github.com/exceljs/exceljs/pull/2996) | ⏳ Open | Nov 2025 |
 | Pivot table column width control | [#8](https://github.com/protobi/exceljs/issues/8) | [#2997](https://github.com/exceljs/exceljs/pull/2997) | ⏳ Open | Nov 2025 |
+| HAN CELL file support | - | [#3017](https://github.com/exceljs/exceljs/pull/3017) | ⏳ Open | Jan 2026 |
+| Data bar conditional formatting defaults | - | [#3018](https://github.com/exceljs/exceljs/pull/3018) | ⏳ Open | Jan 2026 |
 
 **Status:** All original contributions submitted, waiting for upstream review
 
