@@ -28,6 +28,27 @@ This AI-assisted workflow enables rapid response to community issues while maint
 
 ## Fork Release History
 
+### 4.4.0-protobi.7 (2026-01-26)
+
+**Bug Fixes**
+
+- Added support for reading Excel files created by HAN CELL (Korean spreadsheet software) ([exceljs#3014](https://github.com/exceljs/exceljs/issues/3014))
+  - Fixed crash when reading files with `x:` namespace prefix
+  - Added null checks for workbook, appProperties, and coreProperties
+  - Made parsers lenient with unknown XML tags
+- Fixed data bar conditional formatting crash when using minimal API options ([exceljs#3015](https://github.com/exceljs/exceljs/issues/3015))
+  - Provide default cfvo array: `[{ type: "min" }, { type: "max" }]`
+  - Provide default color: Excel blue `#638EC6`
+
+**Testing:**
+- Added integration test with real HAN CELL file
+- Added unit tests for data bar default values
+- All 198 tests passing (2 pre-existing unrelated failures)
+
+**Pull Requests:** [#33](https://github.com/protobi/exceljs/pull/33), [#34](https://github.com/protobi/exceljs/pull/34), [#35](https://github.com/protobi/exceljs/pull/35), [#36](https://github.com/protobi/exceljs/pull/36)
+
+---
+
 ### 4.4.0-protobi.6 (2025-12-14)
 
 **Security Fix**
