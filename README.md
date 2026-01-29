@@ -1571,6 +1571,52 @@ pivotSheet2.addPivotTable({
 });
 ```
 
+### Page Fields (Report Filters)
+
+Page fields, also known as report filters, allow you to filter the entire pivot table by field values. Users can select different values from a dropdown to dynamically filter the displayed data.
+
+```javascript
+const sourceSheet = workbook.addWorksheet('Data');
+sourceSheet.addRows([
+  ['Region', 'Product', 'Quarter', 'Sales', 'latest'],
+  ['East', 'Widget A', 'Q1', 1000, 1],
+  ['East', 'Widget A', 'Q2', 1200, 0],
+  ['West', 'Widget B', 'Q1', 1500, 1],
+  ['West', 'Widget B', 'Q2', 2000, 1],
+]);
+
+// Pivot table with page field that defaults to showing only latest=1
+const pivotSheet = workbook.addWorksheet('Latest Sales');
+pivotSheet.addPivotTable({
+  sourceSheet: sourceSheet,
+  rows: ['Region'],
+  columns: ['Quarter'],
+  values: ['Sales'],
+  pages: ['latest'],               // Add 'latest' as a page field
+  pageDefaults: { latest: 1 },     // Default to showing only latest=1
+  metric: 'sum',
+});
+```
+
+You can also have multiple page fields:
+
+```javascript
+pivotSheet.addPivotTable({
+  sourceSheet: sourceSheet,
+  rows: ['Region'],
+  columns: ['Quarter'],
+  values: ['Sales'],
+  pages: ['latest', 'status'],
+  pageDefaults: {
+    latest: 1,
+    status: 'active'
+  },
+  metric: 'sum',
+});
+```
+
+When you open the generated Excel file, dropdown filters will appear above the pivot table, allowing users to interactively change the filter values.
+
 ### Preserving Custom Column Widths
 
 By default, Excel's pivot table styles control column widths, which can override any custom widths you set on the worksheet. To preserve your custom column widths:
@@ -1616,6 +1662,8 @@ The following properties are supported in the pivot table configuration:
 | rows                      | String[]   | Y        | Array of field names to use as row dimensions (must exist in first row)    |
 | columns                   | String[]   | Y        | Array of field names to use as column dimensions (must exist in first row) |
 | values                    | String[]   | Y        | Array of field names to aggregate (currently only 1 value is supported)    |
+| pages                     | String[]   | N        | Array of field names to use as page fields / report filters (must exist in first row) |
+| pageDefaults              | Object     | N        | Default filter values for page fields. Keys are field names, values are the default selections |
 | metric                    | String     | N        | Aggregation function (currently only 'sum' is supported). Default: 'sum'   |
 | applyWidthHeightFormats   | String     | N        | Controls column width behavior: '1' = apply pivot table style (default), '0' = preserve worksheet column widths |
 
@@ -1645,7 +1693,6 @@ The following properties are supported in the pivot table configuration:
 - **Placement:** The pivot table will be placed starting at cell A1 on the destination worksheet
 - **No calculated fields:** Custom calculations, calculated fields, or computed columns are not supported
 - **No formatting options:** Pivot table styling and formatting options (besides the default) are not configurable
-- **No filters:** You cannot programmatically set filters on the pivot table (though they work interactively in Excel)
 
 ### Example Output
 
