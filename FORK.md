@@ -28,6 +28,42 @@ This AI-assisted workflow enables rapid response to community issues while maint
 
 ## Fork Release History
 
+### 4.4.0-protobi.8 (2026-01-31)
+
+**New Features**
+
+- **Form Control Checkbox support** ([#31](https://github.com/protobi/exceljs/issues/31))
+  - Implement legacy Form Control checkboxes compatible with Excel 2007+, WPS Office, and LibreOffice
+  - Add `addFormCheckbox()` and `getFormCheckboxes()` worksheet API
+  - Support checked/unchecked state, linked cells, and custom text labels
+  - Write-only support (reading not yet implemented)
+  - Example: `ws.addFormCheckbox('B2:D3', { checked: true, link: 'E2', text: 'Accept terms' })`
+
+- **Page fields support for pivot tables** ([#3021](https://github.com/protobi/exceljs/issues/3021))
+  - Add `pageFields` parameter to pivot table API
+  - Enables report filtering in Excel pivot tables
+  - Example: `ws.addPivotTable({ rows: ['Region'], pageFields: ['Year'] })`
+
+**Security & Dependency Updates**
+
+- **Upgrade archiver to 7.x** ([#11](https://github.com/protobi/exceljs/issues/11))
+  - Implement Duplex interface in StreamBuf (`_read()` and `_write()` methods)
+  - Upgrade archiver: ^5.3.2 → ^7.0.1
+  - Removes deprecated glob 7.x from production dependencies (now uses glob 10.5.0)
+  - Addresses CVE-2025-64756 (glob command injection vulnerability)
+  - Addresses CVE-772 (inflight vulnerability via glob→inflight chain)
+  - glob 7.x remains only in devDependencies (acceptable)
+
+**Testing:**
+- ✅ 884/884 unit tests passing
+- ✅ Integration tests passing
+- ✅ End-to-end tests passing
+- ✅ Checkbox functionality verified with archiver 7.x
+
+**Pull Requests:** Merged to master via issue-31 and issue-11 branches
+
+---
+
 ### 4.4.0-protobi.7 (2026-01-26)
 
 **Bug Fixes**
