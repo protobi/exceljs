@@ -103,7 +103,7 @@
     "temporary-fork"
   ],
   "dependencies": {
-    "archiver": "^5.3.2",
+    "archiver": "^7.0.1",
     "dayjs": "^1.8.34",
     "fast-csv": "^4.3.1",
     "jszip": "^3.10.1",
