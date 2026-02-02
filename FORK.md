@@ -73,7 +73,7 @@ Implements complete round-trip preservation for Excel files containing pivot tab
 - Relationship mappings preserved correctly
 
 **Testing:**
-- ✅ 884/884 unit tests passing
+- ✅ 1091/1091 tests passing (unit + integration + end-to-end)
 - ✅ Round-trip test with real-world pivot table/chart files
 - ✅ Excel opens files without corruption warnings
 - ✅ Pivot tables remain functional after round-trip
@@ -84,6 +84,42 @@ Implements complete round-trip preservation for Excel files containing pivot tab
 - Reading/modifying existing pivot table definitions not yet implemented
 - This implementation enables preservation, not programmatic access
 - Hybrid approach: pivot tables can be created OR preserved, not both simultaneously
+
+---
+
+**Bug Fix: Cell Comment/Note Protection Properties** (2026-02-02)
+
+Fixes a critical bug where comment protection properties (`locked`, `lockText`) and positioning (`editAs`) were not being parsed correctly during file reading, causing them to return `null` instead of their actual values.
+
+**Root Cause:**
+- SAX XML parser strips `x:` namespace prefix (Excel namespace) but preserves `v:` prefix (VML namespace)
+- VML xform classes were using prefixed tag names (`x:Locked`, `x:ClientData`) in their maps
+- Parser delivered unprefixed tag names (`Locked`, `ClientData`), causing lookup failures
+
+**The Fix:**
+- Updated 5 VML xform classes to use unprefixed tag names for parsing
+- Render methods still write prefixed XML for Excel compatibility
+- Added comments documenting the SAX parser behavior
+
+**Files Modified:**
+- `lib/xlsx/xform/comment/vml-client-data-xform.js`
+- `lib/xlsx/xform/comment/vml-shape-xform.js`
+- `lib/xlsx/xform/comment/vml-anchor-xform.js`
+- `lib/xlsx/xform/comment/style/vml-protection-xform.js`
+- `lib/xlsx/xform/comment/style/vml-position-xform.js`
+
+**Testing:**
+- ✅ 1091/1091 tests passing (vs 1089 passing before fix)
+- ✅ Fixed 2 previously failing integration tests:
+  - "writes notes" - comment protection properties now round-trip correctly
+  - "Cell annotation supports setting margins and protection properties"
+- ✅ Verified this bug also exists in upstream ExcelJS (not fixed there yet)
+
+**Impact:**
+- Comment protection properties (`note.protection.locked`, `note.protection.lockText`) now parse correctly
+- Comment margins (`note.margins`) now preserve correctly during round-trip
+- Comment positioning (`note.editAs`) now reads back correctly
+- Excel files with protected comments can now be read and written without losing properties
 
 **Related Issues:**
 - Inspired by [ExcelTS Issue #41](https://github.com/cjnoname/excelts/issues/41)

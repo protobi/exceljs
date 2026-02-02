@@ -59,14 +59,15 @@ See [FORK.md Release History](FORK.md#fork-release-history) for details.
 
 ## Fork Release Notes
 
-**4.4.0-protobi.9** (February 2026) - Pivot Table & Chart Round-Trip Preservation
+**4.4.0-protobi.9** (February 2026) - Pivot Table & Chart Round-Trip Preservation + Critical Bug Fixes
 - **Round-trip preservation for pivot tables and charts** - Read Excel files with existing pivot tables and charts, write them back without corruption
 - Hybrid preservation approach: stores raw XML while extracting minimal metadata for structural integrity
 - Preserves pivot table cache definitions, cache records, and relationships
 - Preserves charts, chart styles, and chart colors
 - Preserves row heights (dyDescent attribute) accurately
 - Fixes Excel corruption warnings when round-tripping files with pivot tables/charts
-- All 884 unit tests passing
+- **Fixes cell comment/note protection properties parsing** - Comment protection (locked/lockText) and margins now correctly round-trip (fixes upstream bug present in base ExcelJS)
+- All 1091 tests passing
 
 **4.4.0-protobi.8** (January 2026)
 - Form Control Checkbox support
