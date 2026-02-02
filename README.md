@@ -15,6 +15,7 @@ Reverse engineered from Excel spreadsheet files as a project.
 If you need **today**:
 -  Multiple pivot tables from same source data
 -  Pivot table count metric (`metric: 'count'`)
+-  **Pivot table and chart round-trip preservation** (read files with existing pivot tables/charts, write them back without corruption)
 -  Critical bug fixes (XML parsing, date handling, streaming)
 
 All features are submitted to upstream. [See merge status →](FORK.md)
@@ -47,7 +48,7 @@ See [FORK.md](FORK.md) for detailed tracking of upstream PRs.
 
 ## Security & Maintenance
 
-**Latest Version:** 4.4.0-protobi.5 (Dec 2025)
+**Latest Version:** 4.4.0-protobi.9 (Feb 2026)
 
 This fork receives active security maintenance:
 -  Dependencies regularly updated
@@ -58,16 +59,23 @@ See [FORK.md Release History](FORK.md#fork-release-history) for details.
 
 ## Fork Release Notes
 
-**4.4.0-protobi.5** (December 2025) - Security & Dependency Updates
-- Updated production dependencies (archiver, unzipper)
-- Major dev dependency updates (mocha 7→11, eslint 6→9)
-- Reduced security vulnerabilities by 60% (38→15)
-- All remaining issues are in dev/test tools only
+**4.4.0-protobi.9** (February 2026) - Pivot Table & Chart Round-Trip Preservation
+- **Round-trip preservation for pivot tables and charts** - Read Excel files with existing pivot tables and charts, write them back without corruption
+- Hybrid preservation approach: stores raw XML while extracting minimal metadata for structural integrity
+- Preserves pivot table cache definitions, cache records, and relationships
+- Preserves charts, chart styles, and chart colors
+- Preserves row heights (dyDescent attribute) accurately
+- Fixes Excel corruption warnings when round-tripping files with pivot tables/charts
+- All 884 unit tests passing
 
-**4.4.0-protobi.4** (November 2025)
-- Multiple pivot tables support
-- Pivot table count metric
-- Various bug fixes
+**4.4.0-protobi.8** (January 2026)
+- Form Control Checkbox support
+- Page fields for pivot tables
+- Archiver upgrade to 7.x (security fixes)
+
+**4.4.0-protobi.5** (December 2025)
+- Security & dependency updates
+- Reduced vulnerabilities by 60%
 
 See [FORK.md](FORK.md#fork-release-history) for detailed changelog.
 

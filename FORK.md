@@ -28,6 +28,73 @@ This AI-assisted workflow enables rapid response to community issues while maint
 
 ## Fork Release History
 
+### 4.4.0-protobi.9 (2026-02-01)
+
+**New Feature: Pivot Table & Chart Round-Trip Preservation** ([#41](https://github.com/cjnoname/excelts/issues/41))
+
+Implements complete round-trip preservation for Excel files containing pivot tables, charts, and drawings. Previously, reading an Excel file with pivot tables/charts and writing it back would result in Excel corruption warnings and loss of pivot table/chart data.
+
+**Hybrid Preservation Approach:**
+- Stores raw XML for pivot tables, charts, and drawings
+- Extracts minimal metadata (cacheId, relationships) for structural integrity
+- Doesn't attempt to fully model complex Excel structures
+- Enables round-trip without data loss or corruption
+
+**What's Preserved:**
+
+1. **Pivot Tables:**
+   - Pivot table definitions (`xl/pivotTables/pivotTable*.xml`)
+   - Cache definitions (`xl/pivotCache/pivotCacheDefinition*.xml`)
+   - Cache records (`xl/pivotCache/pivotCacheRecords*.xml`)
+   - Correct cacheId-to-filename mapping via relationship traversal
+
+2. **Charts:**
+   - Chart definitions (`xl/charts/chart*.xml`)
+   - Chart styles (`xl/charts/style*.xml`)
+   - Chart colors (`xl/charts/colors*.xml`)
+   - All chart relationships
+
+3. **Drawings:**
+   - Detects drawings with chart references
+   - Preserves as raw XML instead of parsing
+   - Regular drawings without charts still parsed normally (for image support)
+   - Recreates drawing relationships on write
+
+4. **Row Heights:**
+   - Preserves `x14ac:dyDescent` attribute for accurate row height
+   - Only outputs `customHeight` if present in original file
+   - Fixes row height discrepancies during round-trip
+
+**Implementation Details:**
+- 16 files modified, 593 insertions, 40 deletions
+- Added `test/test-roundtrip-pivot.js` for verification
+- Updated test expectations for dyDescent preservation
+- All required content type declarations added
+- Relationship mappings preserved correctly
+
+**Testing:**
+- ✅ 884/884 unit tests passing
+- ✅ Round-trip test with real-world pivot table/chart files
+- ✅ Excel opens files without corruption warnings
+- ✅ Pivot tables remain functional after round-trip
+- ✅ Charts display correctly after round-trip
+
+**Known Limitations:**
+- Write-only pivot table creation still supported (existing functionality)
+- Reading/modifying existing pivot table definitions not yet implemented
+- This implementation enables preservation, not programmatic access
+- Hybrid approach: pivot tables can be created OR preserved, not both simultaneously
+
+**Related Issues:**
+- Inspired by [ExcelTS Issue #41](https://github.com/cjnoname/excelts/issues/41)
+- Addresses Excel corruption: "Removed Part: /xl/pivotTables/pivotTable1.xml"
+- Fixes missing content type declarations
+- Resolves row height preservation issues
+
+**Commit:** 853aa94
+
+---
+
 ### 4.4.0-protobi.8 (2026-01-31)
 
 **New Features**
