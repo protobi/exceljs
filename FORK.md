@@ -28,6 +28,16 @@ This AI-assisted workflow enables rapid response to community issues while maint
 
 ## Fork Release History
 
+### Unreleased
+
+**Bug Fix: `workbook.getWorksheet(name)` is now case-insensitive** ([upstream #3028](https://github.com/exceljs/exceljs/issues/3028))
+
+`Workbook.addWorksheet(name)` already enforces case-insensitive uniqueness (and Excel itself treats sheet names case-insensitively), but `Workbook.getWorksheet(name)` was matching with a case-sensitive `===`. The two APIs disagreed: a workbook would refuse to add `"sheet1"` because `"Sheet1"` exists, yet `getWorksheet("sheet1")` would return `undefined` for that same sheet.
+
+`getWorksheet` now lowercases both sides of the comparison so any casing of an existing sheet name resolves to that sheet. Numeric-id and no-arg branches are unchanged.
+
+Minor behavior change: code that relied on a casing mismatch returning `undefined` will now find the sheet. We consider this a bug fix — the previous behavior contradicted `addWorksheet`'s own constraint.
+
 ### 4.4.0-protobi.9 (2026-02-01)
 
 **New Feature: Pivot Table & Chart Round-Trip Preservation** ([#41](https://github.com/cjnoname/excelts/issues/41))
