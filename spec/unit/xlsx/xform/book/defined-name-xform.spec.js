@@ -23,8 +23,7 @@ const expectations = [
       localSheetId: 0,
       ranges: ['bar!$A$1:$C$10'],
     },
-    xml:
-      '<definedName name="_xlnm.Print_Area" localSheetId="0">bar!$A$1:$C$10</definedName>',
+    xml: '<definedName name="_xlnm.Print_Area" localSheetId="0">bar!$A$1:$C$10</definedName>',
     parsedModel: {
       name: '_xlnm.Print_Area',
       localSheetId: 0,
@@ -39,8 +38,28 @@ const expectations = [
     },
     preparedModel: {name: 'foo', ranges: []},
     xml: '<definedName name="foo">"OFFSET($A$10;0;0;0;1)"</definedName>',
-    parsedModel: {name: 'foo', ranges: []},
+    parsedModel: {name: 'foo', ranges: [], formula: '"OFFSET($A$10;0;0;0;1)"'},
     tests: ['parse'],
+  },
+  {
+    title: 'Named LAMBDA expression',
+    create() {
+      return new DefinedNameXform();
+    },
+    preparedModel: {name: 'MyDouble', ranges: [], formula: 'LAMBDA(x,x*2)'},
+    xml: '<definedName name="MyDouble">LAMBDA(x,x*2)</definedName>',
+    parsedModel: {name: 'MyDouble', ranges: [], formula: 'LAMBDA(x,x*2)'},
+    tests: ['render', 'renderIn', 'parse'],
+  },
+  {
+    title: 'Named LAMBDA with multiple parameters',
+    create() {
+      return new DefinedNameXform();
+    },
+    preparedModel: {name: 'MySum', ranges: [], formula: 'LAMBDA(x,y,x+y)'},
+    xml: '<definedName name="MySum">LAMBDA(x,y,x+y)</definedName>',
+    parsedModel: {name: 'MySum', ranges: [], formula: 'LAMBDA(x,y,x+y)'},
+    tests: ['render', 'renderIn', 'parse'],
   },
 ];
 
