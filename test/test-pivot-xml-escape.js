@@ -45,9 +45,7 @@ function save(workbook, filepath) {
     .writeFile(filepath)
     .then(() => {
       const microseconds = stopwatch.microseconds;
-      console.log(
-        'Done. Successfully generated pivot table with XML special characters.'
-      );
+      console.log('Done. Successfully generated pivot table with XML special characters.');
       console.log('Time taken:', microseconds);
     })
     .catch(err => {

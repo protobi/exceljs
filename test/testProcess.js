@@ -5,7 +5,7 @@ const [, , inputFile, outputFile] = process.argv;
 const wb = new Excel.Workbook();
 
 let passed = true;
-const assert = function(value, failMessage, passMessage) {
+const assert = function (value, failMessage, passMessage) {
   if (!value) {
     if (failMessage) {
       console.error(failMessage);

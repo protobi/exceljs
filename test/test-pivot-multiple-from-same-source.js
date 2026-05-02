@@ -64,9 +64,7 @@ function save(workbook, filepath) {
     .writeFile(filepath)
     .then(() => {
       const microseconds = stopwatch.microseconds;
-      console.log(
-        'Done. Successfully generated 3 pivot tables from same source.'
-      );
+      console.log('Done. Successfully generated 3 pivot tables from same source.');
       console.log('Time taken:', microseconds);
     })
     .catch(err => {

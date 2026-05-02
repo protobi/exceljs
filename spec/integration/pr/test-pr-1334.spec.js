@@ -8,16 +8,7 @@ describe('github issues', () => {
       const wb = new ExcelJS.Workbook();
       const ws = wb.addWorksheet('testSheet');
 
-      ws.addRow([
-        'test1',
-        'test2',
-        'test3',
-        'test4',
-        'test5',
-        'test6',
-        'test7',
-        'test8',
-      ]);
+      ws.addRow(['test1', 'test2', 'test3', 'test4', 'test5', 'test6', 'test7', 'test8']);
 
       const row = ws.getRow(1);
       row.getCell(1).note = 'test1';

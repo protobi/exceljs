@@ -163,20 +163,8 @@ module.exports = {
         const ws = wb.getWorksheet('splice-row-remove-style');
         expect(ws).to.not.be.undefined();
 
-        expect(ws.getRow(1).values).to.deep.equal([
-          ,
-          '1,1',
-          '1,2',
-          '1,3',
-          '1,4',
-        ]);
-        expect(ws.getRow(2).values).to.deep.equal([
-          ,
-          '4,1',
-          '4,2',
-          '4,3',
-          '4,4',
-        ]);
+        expect(ws.getRow(1).values).to.deep.equal([, '1,1', '1,2', '1,3', '1,4']);
+        expect(ws.getRow(2).values).to.deep.equal([, '4,1', '4,2', '4,3', '4,4']);
 
         expect(ws.getCell('A1').style).to.deep.equal({
           numFmt: '# ?/?',
@@ -275,13 +263,7 @@ module.exports = {
         const ws = wb.getWorksheet('splice-row-replace-style');
         expect(ws).to.not.be.undefined();
 
-        expect(ws.getRow(1).values).to.deep.equal([
-          ,
-          '1,1',
-          '1,2',
-          '1,3',
-          '1,4',
-        ]);
+        expect(ws.getRow(1).values).to.deep.equal([, '1,1', '1,2', '1,3', '1,4']);
         expect(ws.getRow(2).values).to.deep.equal([
           ,
           'two-one',
@@ -289,13 +271,7 @@ module.exports = {
           'two-three',
           'two-four',
         ]);
-        expect(ws.getRow(3).values).to.deep.equal([
-          ,
-          '3,1',
-          '3,2',
-          '3,3',
-          '3,4',
-        ]);
+        expect(ws.getRow(3).values).to.deep.equal([, '3,1', '3,2', '3,3', '3,4']);
 
         expect(ws.getCell('B1').style).to.deep.equal({
           numFmt: 'top',
@@ -362,20 +338,8 @@ module.exports = {
         const wsSquare = wb.getWorksheet('splice-row-remove-name-square');
         expect(wsSquare).to.not.be.undefined();
 
-        expect(wsSquare.getRow(1).values).to.deep.equal([
-          ,
-          '1,1',
-          '1,2',
-          '1,3',
-          '1,4',
-        ]);
-        expect(wsSquare.getRow(2).values).to.deep.equal([
-          ,
-          '4,1',
-          '4,2',
-          '4,3',
-          '4,4',
-        ]);
+        expect(wsSquare.getRow(1).values).to.deep.equal([, '1,1', '1,2', '1,3', '1,4']);
+        expect(wsSquare.getRow(2).values).to.deep.equal([, '4,1', '4,2', '4,3', '4,4']);
 
         ['A', 'B', 'C', 'D'].forEach(col => {
           [1, 2, 3].forEach(row => {
@@ -434,41 +398,11 @@ module.exports = {
         const wsSquare = wb.getWorksheet('splice-row-insert-name-square');
         expect(wsSquare).to.not.be.undefined();
 
-        expect(wsSquare.getRow(1).values).to.deep.equal([
-          ,
-          '1,1',
-          '1,2',
-          '1,3',
-          '1,4',
-        ]);
-        expect(wsSquare.getRow(2).values).to.deep.equal([
-          ,
-          '2,1',
-          '2,2',
-          '2,3',
-          '2,4',
-        ]);
-        expect(wsSquare.getRow(3).values).to.deep.equal([
-          ,
-          'foo',
-          'bar',
-          'baz',
-          'qux',
-        ]);
-        expect(wsSquare.getRow(4).values).to.deep.equal([
-          ,
-          '3,1',
-          '3,2',
-          '3,3',
-          '3,4',
-        ]);
-        expect(wsSquare.getRow(5).values).to.deep.equal([
-          ,
-          '4,1',
-          '4,2',
-          '4,3',
-          '4,4',
-        ]);
+        expect(wsSquare.getRow(1).values).to.deep.equal([, '1,1', '1,2', '1,3', '1,4']);
+        expect(wsSquare.getRow(2).values).to.deep.equal([, '2,1', '2,2', '2,3', '2,4']);
+        expect(wsSquare.getRow(3).values).to.deep.equal([, 'foo', 'bar', 'baz', 'qux']);
+        expect(wsSquare.getRow(4).values).to.deep.equal([, '3,1', '3,2', '3,3', '3,4']);
+        expect(wsSquare.getRow(5).values).to.deep.equal([, '4,1', '4,2', '4,3', '4,4']);
 
         ['A', 'B', 'C', 'D'].forEach(col => {
           [1, 2, 3, 4, 5].forEach(row => {
@@ -483,13 +417,7 @@ module.exports = {
         const wsSingles = wb.getWorksheet('splice-row-insert-name-singles');
         expect(wsSingles).to.not.be.undefined();
         expect(wsSingles.getRow(1).values).to.deep.equal([, '1,1', , , '1,4']);
-        expect(wsSingles.getRow(3).values).to.deep.equal([
-          ,
-          'foo',
-          'bar',
-          'baz',
-          'qux',
-        ]);
+        expect(wsSingles.getRow(3).values).to.deep.equal([, 'foo', 'bar', 'baz', 'qux']);
         expect(wsSingles.getRow(5).values).to.deep.equal([, '4,1', , , '4,4']);
 
         expect(wsSingles.getCell('A1').name).to.equal('single-A1');
@@ -533,34 +461,10 @@ module.exports = {
         const wsSquare = wb.getWorksheet('splice-row-replace-name-square');
         expect(wsSquare).to.not.be.undefined();
 
-        expect(wsSquare.getRow(1).values).to.deep.equal([
-          ,
-          '1,1',
-          '1,2',
-          '1,3',
-          '1,4',
-        ]);
-        expect(wsSquare.getRow(2).values).to.deep.equal([
-          ,
-          'foo',
-          'bar',
-          'baz',
-          'qux',
-        ]);
-        expect(wsSquare.getRow(3).values).to.deep.equal([
-          ,
-          '3,1',
-          '3,2',
-          '3,3',
-          '3,4',
-        ]);
-        expect(wsSquare.getRow(4).values).to.deep.equal([
-          ,
-          '4,1',
-          '4,2',
-          '4,3',
-          '4,4',
-        ]);
+        expect(wsSquare.getRow(1).values).to.deep.equal([, '1,1', '1,2', '1,3', '1,4']);
+        expect(wsSquare.getRow(2).values).to.deep.equal([, 'foo', 'bar', 'baz', 'qux']);
+        expect(wsSquare.getRow(3).values).to.deep.equal([, '3,1', '3,2', '3,3', '3,4']);
+        expect(wsSquare.getRow(4).values).to.deep.equal([, '4,1', '4,2', '4,3', '4,4']);
 
         ['A', 'B', 'C', 'D'].forEach(col => {
           [1, 2, 3, 4].forEach(row => {
@@ -576,13 +480,7 @@ module.exports = {
         expect(wsSingles).to.not.be.undefined();
 
         expect(wsSingles.getRow(1).values).to.deep.equal([, '1,1', , , '1,4']);
-        expect(wsSingles.getRow(2).values).to.deep.equal([
-          ,
-          'foo',
-          'bar',
-          'baz',
-          'qux',
-        ]);
+        expect(wsSingles.getRow(2).values).to.deep.equal([, 'foo', 'bar', 'baz', 'qux']);
         expect(wsSingles.getRow(4).values).to.deep.equal([, '4,1', , , '4,4']);
 
         expect(wsSingles.getCell('A1').name).to.equal('single-A1');
@@ -650,29 +548,11 @@ module.exports = {
         const ws = wb.getWorksheet('splice-column-insert-fewer');
         expect(ws).to.not.be.undefined();
 
-        expect(ws.getRow(1).values).to.deep.equal([
-          ,
-          '1,1',
-          'one',
-          '1,4',
-          '1,5',
-        ]);
-        expect(ws.getRow(2).values).to.deep.equal([
-          ,
-          '2,1',
-          'two',
-          '2,4',
-          '2,5',
-        ]);
+        expect(ws.getRow(1).values).to.deep.equal([, '1,1', 'one', '1,4', '1,5']);
+        expect(ws.getRow(2).values).to.deep.equal([, '2,1', 'two', '2,4', '2,5']);
         expect(ws.getRow(3).values).to.deep.equal([, , 'three']);
         expect(ws.getRow(4).values).to.deep.equal([, 4.1, 'four', , 4.5]);
-        expect(ws.getRow(5).values).to.deep.equal([
-          ,
-          '5,1',
-          'five',
-          '5,4',
-          '5,5',
-        ]);
+        expect(ws.getRow(5).values).to.deep.equal([, '5,1', 'five', '5,4', '5,5']);
       },
     },
     insertSame: {
@@ -698,39 +578,11 @@ module.exports = {
         const ws = wb.getWorksheet('splice-column-insert-same');
         expect(ws).to.not.be.undefined();
 
-        expect(ws.getRow(1).values).to.deep.equal([
-          ,
-          '1,1',
-          'one',
-          'une',
-          '1,4',
-          '1,5',
-        ]);
-        expect(ws.getRow(2).values).to.deep.equal([
-          ,
-          '2,1',
-          'two',
-          'deux',
-          '2,4',
-          '2,5',
-        ]);
+        expect(ws.getRow(1).values).to.deep.equal([, '1,1', 'one', 'une', '1,4', '1,5']);
+        expect(ws.getRow(2).values).to.deep.equal([, '2,1', 'two', 'deux', '2,4', '2,5']);
         expect(ws.getRow(3).values).to.deep.equal([, , 'three', 'trois']);
-        expect(ws.getRow(4).values).to.deep.equal([
-          ,
-          4.1,
-          'four',
-          'quatre',
-          ,
-          4.5,
-        ]);
-        expect(ws.getRow(5).values).to.deep.equal([
-          ,
-          '5,1',
-          'five',
-          'cinq',
-          '5,4',
-          '5,5',
-        ]);
+        expect(ws.getRow(4).values).to.deep.equal([, 4.1, 'four', 'quatre', , 4.5]);
+        expect(ws.getRow(5).values).to.deep.equal([, '5,1', 'five', 'cinq', '5,4', '5,5']);
       },
     },
     insertMore: {
@@ -757,40 +609,10 @@ module.exports = {
         const ws = wb.getWorksheet('splice-column-insert-more');
         expect(ws).to.not.be.undefined();
 
-        expect(ws.getRow(1).values).to.deep.equal([
-          ,
-          '1,1',
-          'one',
-          'une',
-          'uno',
-          '1,4',
-          '1,5',
-        ]);
-        expect(ws.getRow(2).values).to.deep.equal([
-          ,
-          '2,1',
-          'two',
-          'deux',
-          'due',
-          '2,4',
-          '2,5',
-        ]);
-        expect(ws.getRow(3).values).to.deep.equal([
-          ,
-          ,
-          'three',
-          'trois',
-          'tre',
-        ]);
-        expect(ws.getRow(4).values).to.deep.equal([
-          ,
-          4.1,
-          'four',
-          'quatre',
-          'quatro',
-          ,
-          4.5,
-        ]);
+        expect(ws.getRow(1).values).to.deep.equal([, '1,1', 'one', 'une', 'uno', '1,4', '1,5']);
+        expect(ws.getRow(2).values).to.deep.equal([, '2,1', 'two', 'deux', 'due', '2,4', '2,5']);
+        expect(ws.getRow(3).values).to.deep.equal([, , 'three', 'trois', 'tre']);
+        expect(ws.getRow(4).values).to.deep.equal([, 4.1, 'four', 'quatre', 'quatro', , 4.5]);
         expect(ws.getRow(5).values).to.deep.equal([
           ,
           '5,1',
@@ -887,27 +709,9 @@ module.exports = {
         const ws = wb.getWorksheet('splice-col-insert-style');
         expect(ws).to.not.be.undefined();
 
-        expect(ws.getRow(1).values).to.deep.equal([
-          ,
-          '1,1',
-          'one',
-          '1,2',
-          '1,3',
-        ]);
-        expect(ws.getRow(2).values).to.deep.equal([
-          ,
-          '2,1',
-          'two',
-          '2,2',
-          '2,3',
-        ]);
-        expect(ws.getRow(3).values).to.deep.equal([
-          ,
-          '3,1',
-          'three',
-          '3,2',
-          '3,3',
-        ]);
+        expect(ws.getRow(1).values).to.deep.equal([, '1,1', 'one', '1,2', '1,3']);
+        expect(ws.getRow(2).values).to.deep.equal([, '2,1', 'two', '2,2', '2,3']);
+        expect(ws.getRow(3).values).to.deep.equal([, '3,1', 'three', '3,2', '3,3']);
 
         expect(ws.getColumn(3).style).to.deep.equal({
           alignment: {
@@ -968,27 +772,9 @@ module.exports = {
         const ws = wb.getWorksheet('splice-col-replace-style');
         expect(ws).to.not.be.undefined();
 
-        expect(ws.getRow(1).values).to.deep.equal([
-          ,
-          '1,1',
-          'one-two',
-          '1,3',
-          '1,4',
-        ]);
-        expect(ws.getRow(2).values).to.deep.equal([
-          ,
-          '2,1',
-          'two-two',
-          '2,3',
-          '2,4',
-        ]);
-        expect(ws.getRow(3).values).to.deep.equal([
-          ,
-          '3,1',
-          'three-two',
-          '3,3',
-          '3,4',
-        ]);
+        expect(ws.getRow(1).values).to.deep.equal([, '1,1', 'one-two', '1,3', '1,4']);
+        expect(ws.getRow(2).values).to.deep.equal([, '2,1', 'two-two', '2,3', '2,4']);
+        expect(ws.getRow(3).values).to.deep.equal([, '3,1', 'three-two', '3,3', '3,4']);
 
         expect(ws.getCell('A2').style).to.deep.equal({
           numFmt: 'left',
@@ -1117,38 +903,10 @@ module.exports = {
         const wsSquare = wb.getWorksheet('splice-col-insert-name-square');
         expect(wsSquare).to.not.be.undefined();
 
-        expect(wsSquare.getRow(1).values).to.deep.equal([
-          ,
-          '1,1',
-          '1,2',
-          'foo',
-          '1,3',
-          '1,4',
-        ]);
-        expect(wsSquare.getRow(2).values).to.deep.equal([
-          ,
-          '2,1',
-          '2,2',
-          'bar',
-          '2,3',
-          '2,4',
-        ]);
-        expect(wsSquare.getRow(3).values).to.deep.equal([
-          ,
-          '3,1',
-          '3,2',
-          'baz',
-          '3,3',
-          '3,4',
-        ]);
-        expect(wsSquare.getRow(4).values).to.deep.equal([
-          ,
-          '4,1',
-          '4,2',
-          'qux',
-          '4,3',
-          '4,4',
-        ]);
+        expect(wsSquare.getRow(1).values).to.deep.equal([, '1,1', '1,2', 'foo', '1,3', '1,4']);
+        expect(wsSquare.getRow(2).values).to.deep.equal([, '2,1', '2,2', 'bar', '2,3', '2,4']);
+        expect(wsSquare.getRow(3).values).to.deep.equal([, '3,1', '3,2', 'baz', '3,3', '3,4']);
+        expect(wsSquare.getRow(4).values).to.deep.equal([, '4,1', '4,2', 'qux', '4,3', '4,4']);
 
         ['A', 'B', 'C', 'D', 'E'].forEach(col => {
           [1, 2, 3, 4].forEach(row => {
@@ -1163,22 +921,8 @@ module.exports = {
         const wsSingles = wb.getWorksheet('splice-col-insert-name-singles');
         expect(wsSingles).to.not.be.undefined();
 
-        expect(wsSingles.getRow(1).values).to.deep.equal([
-          ,
-          '1,1',
-          ,
-          'foo',
-          ,
-          '1,4',
-        ]);
-        expect(wsSingles.getRow(4).values).to.deep.equal([
-          ,
-          '4,1',
-          ,
-          'qux',
-          ,
-          '4,4',
-        ]);
+        expect(wsSingles.getRow(1).values).to.deep.equal([, '1,1', , 'foo', , '1,4']);
+        expect(wsSingles.getRow(4).values).to.deep.equal([, '4,1', , 'qux', , '4,4']);
 
         expect(wsSingles.getCell('A1').name).to.equal('single-A1');
         expect(wsSingles.getCell('A4').name).to.equal('single-A4');
@@ -1221,34 +965,10 @@ module.exports = {
         const wsSquare = wb.getWorksheet('splice-col-replace-name-square');
         expect(wsSquare).to.not.be.undefined();
 
-        expect(wsSquare.getRow(1).values).to.deep.equal([
-          ,
-          '1,1',
-          'foo',
-          '1,3',
-          '1,4',
-        ]);
-        expect(wsSquare.getRow(2).values).to.deep.equal([
-          ,
-          '2,1',
-          'bar',
-          '2,3',
-          '2,4',
-        ]);
-        expect(wsSquare.getRow(3).values).to.deep.equal([
-          ,
-          '3,1',
-          'baz',
-          '3,3',
-          '3,4',
-        ]);
-        expect(wsSquare.getRow(4).values).to.deep.equal([
-          ,
-          '4,1',
-          'qux',
-          '4,3',
-          '4,4',
-        ]);
+        expect(wsSquare.getRow(1).values).to.deep.equal([, '1,1', 'foo', '1,3', '1,4']);
+        expect(wsSquare.getRow(2).values).to.deep.equal([, '2,1', 'bar', '2,3', '2,4']);
+        expect(wsSquare.getRow(3).values).to.deep.equal([, '3,1', 'baz', '3,3', '3,4']);
+        expect(wsSquare.getRow(4).values).to.deep.equal([, '4,1', 'qux', '4,3', '4,4']);
 
         ['A', 'B', 'C', 'D'].forEach(col => {
           [1, 2, 3, 4].forEach(row => {
@@ -1263,20 +983,8 @@ module.exports = {
         const wsSingles = wb.getWorksheet('splice-col-replace-name-singles');
         expect(wsSingles).to.not.be.undefined();
 
-        expect(wsSingles.getRow(1).values).to.deep.equal([
-          ,
-          '1,1',
-          'foo',
-          ,
-          '1,4',
-        ]);
-        expect(wsSingles.getRow(4).values).to.deep.equal([
-          ,
-          '4,1',
-          'qux',
-          ,
-          '4,4',
-        ]);
+        expect(wsSingles.getRow(1).values).to.deep.equal([, '1,1', 'foo', , '1,4']);
+        expect(wsSingles.getRow(4).values).to.deep.equal([, '4,1', 'qux', , '4,4']);
 
         expect(wsSingles.getCell('A1').name).to.equal('single-A1');
         expect(wsSingles.getCell('A4').name).to.equal('single-A4');

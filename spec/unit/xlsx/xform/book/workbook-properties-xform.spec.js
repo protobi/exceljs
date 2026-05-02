@@ -1,8 +1,6 @@
 const testXformHelper = require('../test-xform-helper');
 
-const WorkbookPropertiesXform = verquire(
-  'xlsx/xform/book/workbook-properties-xform'
-);
+const WorkbookPropertiesXform = verquire('xlsx/xform/book/workbook-properties-xform');
 
 const expectations = [
   {
@@ -11,8 +9,7 @@ const expectations = [
       return new WorkbookPropertiesXform();
     },
     preparedModel: {},
-    xml:
-      '<workbookPr defaultThemeVersion="164011" filterPrivacy="1"></workbookPr>',
+    xml: '<workbookPr defaultThemeVersion="164011" filterPrivacy="1"></workbookPr>',
     parsedModel: {},
     tests: ['render', 'renderIn'],
   },
@@ -22,8 +19,7 @@ const expectations = [
       return new WorkbookPropertiesXform();
     },
     preparedModel: {date1904: true},
-    xml:
-      '<workbookPr date1904="1" defaultThemeVersion="164011" filterPrivacy="1"></workbookPr>',
+    xml: '<workbookPr date1904="1" defaultThemeVersion="164011" filterPrivacy="1"></workbookPr>',
     parsedModel: {date1904: true},
     tests: ['render', 'renderIn', 'parse'],
   },

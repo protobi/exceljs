@@ -50,7 +50,7 @@
           "min": 1,
           "max": 6,
           "hidden": false,
-          "style" : {}
+          "style": {}
         },
         {
           "cells": [
@@ -82,7 +82,7 @@
           "min": 1,
           "max": 4,
           "hidden": false,
-          "style" : {}
+          "style": {}
         },
         {
           "cells": [
@@ -115,7 +115,7 @@
           "min": 1,
           "max": 4,
           "hidden": false,
-          "style" : {}
+          "style": {}
         }
       ],
       "dimensions": {
@@ -124,10 +124,7 @@
         "bottom": 3,
         "right": 6
       },
-      "merges": [
-        "A2:B3",
-        "C2:D3"
-      ]
+      "merges": ["A2:B3", "C2:D3"]
     }
   ],
   "definedNames": []

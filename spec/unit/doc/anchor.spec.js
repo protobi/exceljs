@@ -18,9 +18,7 @@ describe('Anchor', () => {
       worksheet.addColumn(anchor.nativeCol + 1, {
         width: 10,
       });
-      expect(anchor.colWidth).to.equal(
-        worksheet.getColumn(anchor.nativeCol + 1).width * 10000
-      );
+      expect(anchor.colWidth).to.equal(worksheet.getColumn(anchor.nativeCol + 1).width * 10000);
     });
   });
   describe('rowHeight', () => {
@@ -73,46 +71,26 @@ describe('Anchor', () => {
       expect(context.anchor.row).to.not.equal(pre);
     });
     it('should integer part of row and rowOff should be always equals', () => {
-      expect(Math.floor(context.anchor.row)).to.equal(
-        Math.floor(context.anchor.nativeCol)
-      );
+      expect(Math.floor(context.anchor.row)).to.equal(Math.floor(context.anchor.nativeCol));
       context.worksheet.getRow(1).height *= 2;
-      expect(Math.floor(context.anchor.row)).to.equal(
-        Math.floor(context.anchor.nativeCol)
-      );
+      expect(Math.floor(context.anchor.row)).to.equal(Math.floor(context.anchor.nativeCol));
       context.worksheet.getRow(1).height /= 4;
-      expect(Math.floor(context.anchor.row)).to.equal(
-        Math.floor(context.anchor.nativeCol)
-      );
+      expect(Math.floor(context.anchor.row)).to.equal(Math.floor(context.anchor.nativeCol));
       context.worksheet.getRow(1).height = 0.1;
-      expect(Math.floor(context.anchor.row)).to.equal(
-        Math.floor(context.anchor.nativeCol)
-      );
+      expect(Math.floor(context.anchor.row)).to.equal(Math.floor(context.anchor.nativeCol));
       context.worksheet.getRow(1).height = 9999;
-      expect(Math.floor(context.anchor.row)).to.equal(
-        Math.floor(context.anchor.nativeCol)
-      );
+      expect(Math.floor(context.anchor.row)).to.equal(Math.floor(context.anchor.nativeCol));
     });
     it('should integer part of col and colOff should be always equals', () => {
-      expect(Math.floor(context.anchor.col)).to.equal(
-        Math.floor(context.anchor.nativeCol)
-      );
+      expect(Math.floor(context.anchor.col)).to.equal(Math.floor(context.anchor.nativeCol));
       context.worksheet.getColumn(1).width *= 2;
-      expect(Math.floor(context.anchor.col)).to.equal(
-        Math.floor(context.anchor.nativeCol)
-      );
+      expect(Math.floor(context.anchor.col)).to.equal(Math.floor(context.anchor.nativeCol));
       context.worksheet.getColumn(1).width /= 4;
-      expect(Math.floor(context.anchor.col)).to.equal(
-        Math.floor(context.anchor.nativeCol)
-      );
+      expect(Math.floor(context.anchor.col)).to.equal(Math.floor(context.anchor.nativeCol));
       context.worksheet.getColumn(1).width = 0.1;
-      expect(Math.floor(context.anchor.col)).to.equal(
-        Math.floor(context.anchor.nativeCol)
-      );
+      expect(Math.floor(context.anchor.col)).to.equal(Math.floor(context.anchor.nativeCol));
       context.worksheet.getColumn(1).width = 9999;
-      expect(Math.floor(context.anchor.col)).to.equal(
-        Math.floor(context.anchor.nativeCol)
-      );
+      expect(Math.floor(context.anchor.col)).to.equal(Math.floor(context.anchor.nativeCol));
     });
     it('should update nativeColOff after col has been changed', () => {
       const pre = context.anchor.nativeColOff;

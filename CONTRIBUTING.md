@@ -87,6 +87,7 @@ npm run test:coverage
 ## Questions?
 
 Open an issue! But remember:
+
 - This fork serves our production needs first
 - We can't provide general Excel library support
 - Response times may vary based on our workload

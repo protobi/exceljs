@@ -11,10 +11,7 @@ const expectations = [
       return new WorkbookXform();
     },
     preparedModel: require('./data/book.1.1.json'),
-    xml: fs
-      .readFileSync(`${__dirname}/data/book.1.2.xml`)
-      .toString()
-      .replace(/\r\n/g, '\n'),
+    xml: fs.readFileSync(`${__dirname}/data/book.1.2.xml`).toString().replace(/\r\n/g, '\n'),
     parsedModel: require('./data/book.1.3.json'),
     tests: ['render', 'renderIn', 'parse'],
   },
@@ -23,10 +20,7 @@ const expectations = [
     create() {
       return new WorkbookXform();
     },
-    xml: fs
-      .readFileSync(`${__dirname}/data/book.2.2.xml`)
-      .toString()
-      .replace(/\r\n/g, '\n'),
+    xml: fs.readFileSync(`${__dirname}/data/book.2.2.xml`).toString().replace(/\r\n/g, '\n'),
     parsedModel: require('./data/book.2.3.json'),
     tests: ['parse'],
   },

@@ -9,11 +9,9 @@ const wb = new Excel.Workbook();
 
 function addTable(ws, ref) {
   const range = new Range(ref);
-  ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'].forEach(
-    (day, index) => {
-      ws.getCell(range.top, range.left + index).value = day;
-    }
-  );
+  ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'].forEach((day, index) => {
+    ws.getCell(range.top, range.left + index).value = day;
+  });
   let count = 1;
   for (let i = 1; i <= 6; i++) {
     for (let j = 0; j < 5; j++) {
@@ -24,23 +22,19 @@ function addTable(ws, ref) {
 
 function addDateTable(ws, ref) {
   const range = new Range(ref);
-  [
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-    'Sunday',
-  ].forEach((day, index) => {
-    ws.getCell(range.top, range.left + index).value = day;
-  });
+  ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].forEach(
+    (day, index) => {
+      ws.getCell(range.top, range.left + index).value = day;
+    }
+  );
   const DAY = 86400000;
   const now = Date.now();
   const today = now - (now % DAY);
   let dt = new Date(today);
-  const sow = today - ( (dt.getDay() - 1) * DAY );
-  const som = sow - (28 * DAY);
+  // eslint-disable-next-line no-mixed-operators
+  const sow = today - (dt.getDay() - 1) * DAY;
+  // eslint-disable-next-line no-mixed-operators
+  const som = sow - 28 * DAY;
   dt = new Date(som);
 
   for (let i = 1; i <= 9; i++) {

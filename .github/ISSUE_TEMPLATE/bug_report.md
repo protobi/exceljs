@@ -27,7 +27,6 @@ expect(ws.getCell('A1').value).to.equal(7);
 
 <!-- A clear and concise description of what you expected to happen. -->
 
-
 ## Possible solution (optional, but very helpful):
 
 ```javascript

@@ -7,17 +7,20 @@ This is a **curated fork** of ExcelJS maintained by Protobi. This document conta
 **ALWAYS ask for user review before committing code changes.**
 
 Do NOT commit automatically, even if:
+
 - Tests pass
 - Code looks good
 - Changes seem minor
 
 **Workflow:**
+
 1. Make changes
 2. Show user what changed (git diff or summary)
 3. **Wait for explicit approval**
 4. Then commit and push
 
 The user may want to:
+
 - Review the changes
 - Test manually
 - Make additional edits
@@ -30,12 +33,14 @@ Only exception: purely documentary changes explicitly requested (and even then, 
 **EVERY commit must reference a GitHub issue.**
 
 **Workflow:**
+
 1. Before starting work, check if a relevant issue exists
 2. If no issue exists, create one first describing the problem/feature
 3. In commit messages, reference the issue using format: `Update #99 Description of change`
 4. After committing, add a comment on the issue with the commit hash
 
 **Commit Message Format:**
+
 ```
 Update #4 Fix XML special character escaping in pivot tables
 
@@ -44,12 +49,14 @@ Detailed description of what was changed and why.
 ```
 
 **Why:**
+
 - Provides context and discussion history for every change
 - Makes it easier to track what changes solved which problems
 - Helps when reviewing git history or creating release notes
 - Enables better collaboration and code review
 
 **Creating Issues:**
+
 ```bash
 # Create an issue
 gh issue create --repo protobi/exceljs --title "Brief description" --body "Detailed description"
@@ -74,12 +81,14 @@ Use semantic versioning with pre-release identifier:
 ```
 
 **Rules:**
+
 - Base version matches upstream (e.g., `4.4.0` from exceljs/exceljs)
 - Pre-release identifier is always `-protobi`
 - Counter increments for each fork release (`.1`, `.2`, `.3`, etc.)
 - When upstream releases new version (e.g., 4.5.0), reset counter: `4.5.0-protobi.1`
 
 **Examples:**
+
 ```
 4.4.0-protobi.1  ← First fork release based on upstream 4.4.0
 4.4.0-protobi.2  ← Second fork release (still based on 4.4.0)
@@ -91,6 +100,7 @@ Use semantic versioning with pre-release identifier:
 **Critical:** npm only picks up changes from git dependencies when `package.json` version changes.
 
 In consuming projects using:
+
 ```json
 "exceljs": "git+https://***@github.com/protobi/exceljs.git"
 ```
@@ -102,12 +112,14 @@ This has been verified through years of production use with Protobi packages.
 ### When to Bump Version
 
 Bump version for:
+
 - ✅ New features added to the fork
 - ✅ Bug fixes in fork-specific code
 - ✅ Adopted upstream PRs that add functionality
 - ✅ Any change you want consuming projects to pick up
 
 Do NOT bump for:
+
 - ❌ Documentation-only changes (README, FORK.md, etc.)
 - ❌ Internal tooling/CI changes
 - ❌ Commits that will be reverted
@@ -191,12 +203,14 @@ git commit -m "Reset version for upstream PR"
 ### What Makes a Clean Upstream PR
 
 Include:
+
 - ✅ Feature code changes
 - ✅ Tests for the feature
 - ✅ Documentation (API docs, usage examples)
 - ✅ package.json at upstream version (4.4.0)
 
 Exclude:
+
 - ❌ Fork identity in README (the note linking to FORK.md is okay)
 - ❌ FORK.md file
 - ❌ Fork-specific CONTRIBUTING.md content
@@ -235,6 +249,7 @@ git push origin master --tags
 Use conventional commits for clarity:
 
 **For fork releases:**
+
 ```
 Release v4.4.0-protobi.2: Add feature X
 
@@ -244,6 +259,7 @@ Release v4.4.0-protobi.2: Add feature X
 ```
 
 **For features:**
+
 ```
 Add support for multiple pivot tables (#1)
 
@@ -252,6 +268,7 @@ Add support for multiple pivot tables (#1)
 ```
 
 **For upstream PRs:**
+
 ```
 Adopt upstream PR #2850: [Feature name]
 
@@ -274,6 +291,7 @@ If tests fail, fix them before releasing.
 ## Documentation Standards
 
 When adding features:
+
 1. **Code changes** - Implement the feature
 2. **Tests** - Add comprehensive tests
 3. **README.md** - Document API and usage with examples
@@ -318,6 +336,7 @@ git tag -l "v*-protobi*"
 ## Questions?
 
 Refer to:
+
 - [FORK.md](../FORK.md) - Complete fork documentation and workflows
 - [CONTRIBUTING.md](../CONTRIBUTING.md) - Contribution guidelines
 - This file - Version and PR management

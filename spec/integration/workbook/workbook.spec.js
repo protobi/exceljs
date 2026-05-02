@@ -151,8 +151,7 @@ describe('Workbook', () => {
       const wb = new ExcelJS.Workbook();
       const ws = wb.addWorksheet('printHeader');
 
-      ws.getCell('A1').value =
-        'This is a header row repeated on every printed page';
+      ws.getCell('A1').value = 'This is a header row repeated on every printed page';
       ws.getCell('B2').value = 'This is a header row too';
 
       for (let i = 0; i < 100; i++) {
@@ -177,10 +176,8 @@ describe('Workbook', () => {
       const wb = new ExcelJS.Workbook();
       const ws = wb.addWorksheet('printColumn');
 
-      ws.getCell('A1').value =
-        'This is a column repeated on every printed page';
-      ws.getCell('A2').value =
-        'This is a column repeated on every printed page';
+      ws.getCell('A1').value = 'This is a column repeated on every printed page';
+      ws.getCell('A2').value = 'This is a column repeated on every printed page';
       ws.getCell('B1').value = 'This is a repeated column too';
       ws.getCell('B2').value = 'This is a repeated column too';
 
@@ -207,10 +204,8 @@ describe('Workbook', () => {
       const wb = new ExcelJS.Workbook();
       const ws = wb.addWorksheet('printHeaderAndColumn');
 
-      ws.getCell('A1').value =
-        'This is a column / row repeated on every printed page';
-      ws.getCell('A2').value =
-        'This is a column / row repeated on every printed page';
+      ws.getCell('A1').value = 'This is a column / row repeated on every printed page';
+      ws.getCell('A2').value = 'This is a column / row repeated on every printed page';
       ws.getCell('B1').value = 'This is a repeated column / row too';
       ws.getCell('B2').value = 'This is a repeated column / row too';
 
@@ -393,9 +388,7 @@ describe('Workbook', () => {
     });
 
     it('dataValidations', () => {
-      const wb = testUtils.createTestBook(new ExcelJS.Workbook(), 'xlsx', [
-        'dataValidations',
-      ]);
+      const wb = testUtils.createTestBook(new ExcelJS.Workbook(), 'xlsx', ['dataValidations']);
 
       return wb.xlsx
         .writeFile(TEST_XLSX_FILE_NAME)
@@ -422,7 +415,7 @@ describe('Workbook', () => {
       return wb.xlsx.writeFile(TEST_XLSX_FILE_NAME);
     });
 
-    it('a lot of sheets to xlsx file', function() {
+    it('a lot of sheets to xlsx file', function () {
       this.timeout(10000);
 
       let i;
@@ -448,7 +441,7 @@ describe('Workbook', () => {
         });
     });
 
-    it('csv file', function() {
+    it('csv file', function () {
       this.timeout(5000);
 
       const wb = testUtils.createTestBook(new ExcelJS.Workbook(), 'csv');
@@ -464,7 +457,7 @@ describe('Workbook', () => {
         });
     });
 
-    it('CSV file and its configuration', function() {
+    it('CSV file and its configuration', function () {
       this.timeout(5000);
       const writeOptions = {
         dateFormat: 'DD/MM/YYYY HH:mm:ss',
@@ -491,9 +484,7 @@ describe('Workbook', () => {
         .writeFile(TEST_CSV_FILE_NAME, writeOptions)
         .then(() => {
           const wb2 = new ExcelJS.Workbook();
-          return wb2.csv
-            .readFile(TEST_CSV_FILE_NAME, readOptions)
-            .then(() => wb2);
+          return wb2.csv.readFile(TEST_CSV_FILE_NAME, readOptions).then(() => wb2);
         })
         .then(wb2 => {
           testUtils.checkTestBook(wb2, 'csv', false, writeOptions);
@@ -586,10 +577,7 @@ describe('Workbook', () => {
           check(ws2b, 'B7', 2, 'sheets');
 
           // two names
-          expect(ws2a.getCell('G1').names).to.have.members([
-            'thing1',
-            'thing2',
-          ]);
+          expect(ws2a.getCell('G1').names).to.have.members(['thing1', 'thing2']);
 
           // once removed
           expect(ws2a.getCell('G2').names).to.have.members(['twice']);
@@ -619,8 +607,7 @@ describe('Workbook', () => {
 
     describe('Duplicate Rows', () => {
       it('Duplicate rows with styles properly', () => {
-        const fileDuplicateRowTestFile =
-          './spec/integration/data/duplicateRowTest.xlsx';
+        const fileDuplicateRowTestFile = './spec/integration/data/duplicateRowTest.xlsx';
         const wb = new ExcelJS.Workbook();
         return wb.xlsx.readFile(fileDuplicateRowTestFile).then(() => {
           const ws = wb.getWorksheet('duplicateTest');
@@ -782,66 +769,42 @@ describe('Workbook', () => {
             expect(ws2.getCell('B2').font).to.deep.equal(
               testUtils.styles.fonts.broadwayRedOutline20
             );
-            expect(ws2.getCell('B2').border).to.deep.equal(
-              testUtils.styles.borders.doubleRed
-            );
-            expect(ws2.getCell('B2').fill).to.deep.equal(
-              testUtils.styles.fills.blueWhiteHGrad
-            );
+            expect(ws2.getCell('B2').border).to.deep.equal(testUtils.styles.borders.doubleRed);
+            expect(ws2.getCell('B2').fill).to.deep.equal(testUtils.styles.fills.blueWhiteHGrad);
             expect(ws2.getCell('B2').alignment).to.deep.equal(
               testUtils.styles.namedAlignments.middleCentre
             );
-            expect(ws2.getCell('B2').numFmt).to.equal(
-              testUtils.styles.numFmts.numFmt1
-            );
+            expect(ws2.getCell('B2').numFmt).to.equal(testUtils.styles.numFmts.numFmt1);
 
             expect(ws2.getCell('B3').font).to.deep.equal(
               testUtils.styles.fonts.broadwayRedOutline20
             );
-            expect(ws2.getCell('B3').border).to.deep.equal(
-              testUtils.styles.borders.doubleRed
-            );
-            expect(ws2.getCell('B3').fill).to.deep.equal(
-              testUtils.styles.fills.blueWhiteHGrad
-            );
+            expect(ws2.getCell('B3').border).to.deep.equal(testUtils.styles.borders.doubleRed);
+            expect(ws2.getCell('B3').fill).to.deep.equal(testUtils.styles.fills.blueWhiteHGrad);
             expect(ws2.getCell('B3').alignment).to.deep.equal(
               testUtils.styles.namedAlignments.middleCentre
             );
-            expect(ws2.getCell('B3').numFmt).to.equal(
-              testUtils.styles.numFmts.numFmt1
-            );
+            expect(ws2.getCell('B3').numFmt).to.equal(testUtils.styles.numFmts.numFmt1);
 
             expect(ws2.getCell('C2').font).to.deep.equal(
               testUtils.styles.fonts.broadwayRedOutline20
             );
-            expect(ws2.getCell('C2').border).to.deep.equal(
-              testUtils.styles.borders.doubleRed
-            );
-            expect(ws2.getCell('C2').fill).to.deep.equal(
-              testUtils.styles.fills.blueWhiteHGrad
-            );
+            expect(ws2.getCell('C2').border).to.deep.equal(testUtils.styles.borders.doubleRed);
+            expect(ws2.getCell('C2').fill).to.deep.equal(testUtils.styles.fills.blueWhiteHGrad);
             expect(ws2.getCell('C2').alignment).to.deep.equal(
               testUtils.styles.namedAlignments.middleCentre
             );
-            expect(ws2.getCell('C2').numFmt).to.equal(
-              testUtils.styles.numFmts.numFmt1
-            );
+            expect(ws2.getCell('C2').numFmt).to.equal(testUtils.styles.numFmts.numFmt1);
 
             expect(ws2.getCell('C3').font).to.deep.equal(
               testUtils.styles.fonts.broadwayRedOutline20
             );
-            expect(ws2.getCell('C3').border).to.deep.equal(
-              testUtils.styles.borders.doubleRed
-            );
-            expect(ws2.getCell('C3').fill).to.deep.equal(
-              testUtils.styles.fills.blueWhiteHGrad
-            );
+            expect(ws2.getCell('C3').border).to.deep.equal(testUtils.styles.borders.doubleRed);
+            expect(ws2.getCell('C3').fill).to.deep.equal(testUtils.styles.fills.blueWhiteHGrad);
             expect(ws2.getCell('C3').alignment).to.deep.equal(
               testUtils.styles.namedAlignments.middleCentre
             );
-            expect(ws2.getCell('C3').numFmt).to.equal(
-              testUtils.styles.numFmts.numFmt1
-            );
+            expect(ws2.getCell('C3').numFmt).to.equal(testUtils.styles.numFmts.numFmt1);
           });
       });
     });
@@ -919,7 +882,7 @@ describe('Workbook', () => {
       expect.fail('should fail for given argument');
     } catch (e) {
       expect(e.message).to.equal(
-        'Can\'t read the data of \'the loaded zip file\'. Is it in a supported JavaScript type (String, Blob, ArrayBuffer, etc) ?'
+        "Can't read the data of 'the loaded zip file'. Is it in a supported JavaScript type (String, Blob, ArrayBuffer, etc) ?"
       );
     }
   });

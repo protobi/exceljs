@@ -54,18 +54,14 @@ module.exports = {
   styles: tools.fix(require('./data/styles.json')),
   properties: tools.fix(require('./data/sheet-properties.json')),
   pageSetup: tools.fix(require('./data/page-setup.json')),
-  conditionalFormatting: tools.fix(
-    require('./data/conditional-formatting.json')
-  ),
+  conditionalFormatting: tools.fix(require('./data/conditional-formatting.json')),
   headerFooter: tools.fix(require('./data/header-footer.json')),
 
   createTestBook(workbook, docType, sheets) {
     const options = getOptions(docType);
     sheets = sheets || ['values'];
 
-    workbook.views = [
-      {x: 1, y: 2, width: 10000, height: 20000, firstSheet: 0, activeTab: 0},
-    ];
+    workbook.views = [{x: 1, y: 2, width: 10000, height: 20000, firstSheet: 0, activeTab: 0}];
 
     sheets.forEach(sheet => {
       const testSheet = _.get(testSheets, sheet);

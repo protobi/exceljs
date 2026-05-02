@@ -9,11 +9,9 @@ workbook.xlsx
       useStyles: true,
     };
 
-    return stream.xlsx
-      .writeFile('./out/template-out.xlsx', options)
-      .then(() => {
-        console.log('Done.');
-      });
+    return stream.xlsx.writeFile('./out/template-out.xlsx', options).then(() => {
+      console.log('Done.');
+    });
   })
   .catch(error => {
     console.error(error.message);

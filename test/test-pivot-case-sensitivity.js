@@ -58,9 +58,7 @@ function save(workbook, filepath) {
 
       JSZip.loadAsync(data)
         .then(zip => {
-          return zip
-            .file('xl/pivotCache/pivotCacheDefinition1.xml')
-            .async('string');
+          return zip.file('xl/pivotCache/pivotCacheDefinition1.xml').async('string');
         })
         .then(xml => {
           console.log('\n--- Verification ---');
@@ -75,17 +73,11 @@ function save(workbook, filepath) {
             console.log(`Product sharedItems count: ${count}`);
 
             if (count === 3) {
-              console.log(
-                '✓ PASS: Case-insensitive deduplication working correctly'
-              );
-              console.log(
-                '  Expected 3 unique products (Apple, Banana, Orange)'
-              );
+              console.log('✓ PASS: Case-insensitive deduplication working correctly');
+              console.log('  Expected 3 unique products (Apple, Banana, Orange)');
               console.log('  Case variants properly deduplicated');
             } else {
-              console.log(
-                `✗ FAIL: Expected 3 unique products but found ${count}`
-              );
+              console.log(`✗ FAIL: Expected 3 unique products but found ${count}`);
               process.exit(1);
             }
           }
@@ -97,10 +89,7 @@ function save(workbook, filepath) {
           if (itemsMatch) {
             const items = itemsMatch[1].match(/v="([^"]+)"/g);
             if (items) {
-              console.log(
-                '  Shared items:',
-                items.map(i => i.match(/v="([^"]+)"/)[1]).join(', ')
-              );
+              console.log('  Shared items:', items.map(i => i.match(/v="([^"]+)"/)[1]).join(', '));
             }
           }
         });

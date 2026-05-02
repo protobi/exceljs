@@ -18,12 +18,7 @@ fsp
     zip.forEach((path, entry) => {
       if (!entry.dir) {
         // console.log(path, entry)
-        console.log(
-          path,
-          entry.name,
-          entry._data.compressedSize,
-          entry._data.uncompressedSize
-        );
+        console.log(path, entry.name, entry._data.compressedSize, entry._data.uncompressedSize);
       }
     });
   });

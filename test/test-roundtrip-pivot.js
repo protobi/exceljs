@@ -35,7 +35,6 @@ async function main(inputPath, outputPath) {
     console.log('Output file size:', stats.size, 'bytes');
 
     console.log('\nRound-trip complete. Try opening the output file in Excel.');
-
   } catch (error) {
     console.error('Error during round-trip:', error.message);
     console.error(error.stack);

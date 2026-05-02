@@ -5,6 +5,7 @@ This is a **temporary fork** of [exceljs/exceljs](https://github.com/exceljs/exc
 ## Why This Fork Exists
 
 Upstream exceljs has 100+ open PRs, some over a year old. We needed these fixes for production use, so we:
+
 1. Adopted well-tested upstream PRs
 2. Added critical pivot table features
 3. Published to npm for community benefit
@@ -35,6 +36,7 @@ This AI-assisted workflow enables rapid response to community issues while maint
 Implements complete round-trip preservation for Excel files containing pivot tables, charts, and drawings. Previously, reading an Excel file with pivot tables/charts and writing it back would result in Excel corruption warnings and loss of pivot table/chart data.
 
 **Hybrid Preservation Approach:**
+
 - Stores raw XML for pivot tables, charts, and drawings
 - Extracts minimal metadata (cacheId, relationships) for structural integrity
 - Doesn't attempt to fully model complex Excel structures
@@ -66,6 +68,7 @@ Implements complete round-trip preservation for Excel files containing pivot tab
    - Fixes row height discrepancies during round-trip
 
 **Implementation Details:**
+
 - 16 files modified, 593 insertions, 40 deletions
 - Added `test/test-roundtrip-pivot.js` for verification
 - Updated test expectations for dyDescent preservation
@@ -73,6 +76,7 @@ Implements complete round-trip preservation for Excel files containing pivot tab
 - Relationship mappings preserved correctly
 
 **Testing:**
+
 - ✅ 1091/1091 tests passing (unit + integration + end-to-end)
 - ✅ Round-trip test with real-world pivot table/chart files
 - ✅ Excel opens files without corruption warnings
@@ -80,6 +84,7 @@ Implements complete round-trip preservation for Excel files containing pivot tab
 - ✅ Charts display correctly after round-trip
 
 **Known Limitations:**
+
 - Write-only pivot table creation still supported (existing functionality)
 - Reading/modifying existing pivot table definitions not yet implemented
 - This implementation enables preservation, not programmatic access
@@ -92,16 +97,19 @@ Implements complete round-trip preservation for Excel files containing pivot tab
 Fixes a critical bug where comment protection properties (`locked`, `lockText`) and positioning (`editAs`) were not being parsed correctly during file reading, causing them to return `null` instead of their actual values.
 
 **Root Cause:**
+
 - SAX XML parser strips `x:` namespace prefix (Excel namespace) but preserves `v:` prefix (VML namespace)
 - VML xform classes were using prefixed tag names (`x:Locked`, `x:ClientData`) in their maps
 - Parser delivered unprefixed tag names (`Locked`, `ClientData`), causing lookup failures
 
 **The Fix:**
+
 - Updated 5 VML xform classes to use unprefixed tag names for parsing
 - Render methods still write prefixed XML for Excel compatibility
 - Added comments documenting the SAX parser behavior
 
 **Files Modified:**
+
 - `lib/xlsx/xform/comment/vml-client-data-xform.js`
 - `lib/xlsx/xform/comment/vml-shape-xform.js`
 - `lib/xlsx/xform/comment/vml-anchor-xform.js`
@@ -109,6 +117,7 @@ Fixes a critical bug where comment protection properties (`locked`, `lockText`) 
 - `lib/xlsx/xform/comment/style/vml-position-xform.js`
 
 **Testing:**
+
 - ✅ 1091/1091 tests passing (vs 1089 passing before fix)
 - ✅ Fixed 2 previously failing integration tests:
   - "writes notes" - comment protection properties now round-trip correctly
@@ -116,12 +125,14 @@ Fixes a critical bug where comment protection properties (`locked`, `lockText`) 
 - ✅ Verified this bug also exists in upstream ExcelJS (not fixed there yet)
 
 **Impact:**
+
 - Comment protection properties (`note.protection.locked`, `note.protection.lockText`) now parse correctly
 - Comment margins (`note.margins`) now preserve correctly during round-trip
 - Comment positioning (`note.editAs`) now reads back correctly
 - Excel files with protected comments can now be read and written without losing properties
 
 **Related Issues:**
+
 - Inspired by [ExcelTS Issue #41](https://github.com/cjnoname/excelts/issues/41)
 - Addresses Excel corruption: "Removed Part: /xl/pivotTables/pivotTable1.xml"
 - Fixes missing content type declarations
@@ -158,6 +169,7 @@ Fixes a critical bug where comment protection properties (`locked`, `lockText`) 
   - glob 7.x remains only in devDependencies (acceptable)
 
 **Testing:**
+
 - ✅ 884/884 unit tests passing
 - ✅ Integration tests passing
 - ✅ End-to-end tests passing
@@ -180,6 +192,7 @@ Fixes a critical bug where comment protection properties (`locked`, `lockText`) 
   - Provide default color: Excel blue `#638EC6`
 
 **Testing:**
+
 - Added integration test with real HAN CELL file
 - Added unit tests for data bar default values
 - All 198 tests passing (2 pre-existing unrelated failures)
@@ -199,6 +212,7 @@ Fixes a critical bug where comment protection properties (`locked`, `lockText`) 
 - Browser builds now CSP-compliant for modern build tools (Vite, Webpack 5+)
 
 **Testing:**
+
 - All existing tests passing
 - Verified dist bundles contain no eval/runInThisContext calls
 
@@ -211,10 +225,12 @@ Fixes a critical bug where comment protection properties (`locked`, `lockText`) 
 **Security & Dependency Updates**
 
 **Production Dependencies:**
+
 - `archiver`: ^5.0.0 → ^5.3.2
 - `unzipper`: 0.10.11 → 0.12.3
 
 **Dev Dependencies (Major Updates):**
+
 - `mocha`: ^7.2.0 → ^11.7.5 (fixes ReDoS in debug, js-yaml, minimatch)
 - `chai-xml`: ^0.3.2 → ^0.4.1 (fixes xml2js prototype pollution)
 - `got`: ^9.0.0 → ^11.8.6 (downgraded from 14 for test compatibility)
@@ -224,11 +240,13 @@ Fixes a critical bug where comment protection properties (`locked`, `lockText`) 
 - `prettier-eslint-cli`: ^5.0.0 → ^8.0.1
 
 **Security Improvements:**
-- Reduced npm audit vulnerabilities from 38 → 15 
+
+- Reduced npm audit vulnerabilities from 38 → 15
 - All remaining vulnerabilities are in dev/test dependencies only
 - No production code security issues
 
 **Testing:**
+
 - ✅ Unit tests: 883 passing, 1 pending
 - ✅ Integration tests: 198 passing
 - ✅ End-to-end tests: 1 passing
@@ -236,13 +254,15 @@ Fixes a critical bug where comment protection properties (`locked`, `lockText`) 
 - ⚠️ Browser tests: Disabled (puppeteer@19 compatibility issues)
 
 **Known Limitations:**
+
 - `glob@7.x` remains in dependency tree (deprecated but no active CVEs)
   - Only affects glob 10.x-11.x CLI (CVE-2025-64756), not 7.x library API
-  - Upgrading to archiver 7.x requires StreamBuf refactoring (_read/_write methods)
+  - Upgrading to archiver 7.x requires StreamBuf refactoring (\_read/\_write methods)
 - Browser tests disabled via `.disable-test-browser` (puppeteer hangs)
 - `got` kept at v11 instead of v14 due to breaking API changes in end-to-end tests
 
 **Related Issues:**
+
 - [#11](https://github.com/protobi/exceljs/issues/11) - npm audit vulnerabilities (protobi fork)
 - [#2984](https://github.com/exceljs/exceljs/issues/2984) - Security vulnerabilities in transitive dependencies (upstream)
 - [#3006](https://github.com/exceljs/exceljs/issues/3006) - glob 7.x dependency discussion (upstream)
@@ -261,46 +281,46 @@ Multiple pivot tables support, pivot table count metric, streaming limitations d
 
 ### ✅ Features Already Submitted to Upstream (Waiting for Merge)
 
-| Feature/Fix | Our Issue | Upstream PR | Status | Date |
-|-------------|-----------|-------------|--------|------|
-| Pivot table count metric | [#12](https://github.com/protobi/exceljs/issues/12) | [#2885](https://github.com/exceljs/exceljs/pull/2885) | ⏳ Open | Feb 2025 |
-| Boolean XML parsing fix | [#18](https://github.com/protobi/exceljs/issues/18) | [#2851](https://github.com/exceljs/exceljs/pull/2851) | ⏳ Open | Nov 2024 |
-| ExcelToDate validation | [#19](https://github.com/protobi/exceljs/issues/19) | [#2956](https://github.com/exceljs/exceljs/pull/2956) | ⏳ Open | Aug 2025 |
-| DynamicFilter parsing | [#20](https://github.com/protobi/exceljs/issues/20) | [#2973](https://github.com/exceljs/exceljs/pull/2973) | ⏳ Open | Sep 2025 |
-| SharedString fix | [#21](https://github.com/protobi/exceljs/issues/21) | [#2915](https://github.com/exceljs/exceljs/pull/2915) | ⏳ Open | Apr 2025 |
-| Autofilter undefined guard | [#22](https://github.com/protobi/exceljs/issues/22) | [#2978](https://github.com/exceljs/exceljs/pull/2978) | ⏳ Open (partial) | Sep 2025 |
-| Image reuse fix | [#24](https://github.com/protobi/exceljs/issues/24) | [#2876](https://github.com/exceljs/exceljs/pull/2876) | ⏳ Open | Feb 2024 |
-| Conditional formatting + hyperlinks corruption fix | [#25](https://github.com/protobi/exceljs/issues/25) | [#2803](https://github.com/exceljs/exceljs/pull/2803) | ⏳ Open | Sep 2024 |
-| Conditional formatting stopIfTrue & operators | [#26](https://github.com/protobi/exceljs/issues/26) | [#2736](https://github.com/exceljs/exceljs/pull/2736) | ⏳ Open | Jul 2024 |
+| Feature/Fix                                        | Our Issue                                           | Upstream PR                                           | Status            | Date     |
+| -------------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------- | ----------------- | -------- |
+| Pivot table count metric                           | [#12](https://github.com/protobi/exceljs/issues/12) | [#2885](https://github.com/exceljs/exceljs/pull/2885) | ⏳ Open           | Feb 2025 |
+| Boolean XML parsing fix                            | [#18](https://github.com/protobi/exceljs/issues/18) | [#2851](https://github.com/exceljs/exceljs/pull/2851) | ⏳ Open           | Nov 2024 |
+| ExcelToDate validation                             | [#19](https://github.com/protobi/exceljs/issues/19) | [#2956](https://github.com/exceljs/exceljs/pull/2956) | ⏳ Open           | Aug 2025 |
+| DynamicFilter parsing                              | [#20](https://github.com/protobi/exceljs/issues/20) | [#2973](https://github.com/exceljs/exceljs/pull/2973) | ⏳ Open           | Sep 2025 |
+| SharedString fix                                   | [#21](https://github.com/protobi/exceljs/issues/21) | [#2915](https://github.com/exceljs/exceljs/pull/2915) | ⏳ Open           | Apr 2025 |
+| Autofilter undefined guard                         | [#22](https://github.com/protobi/exceljs/issues/22) | [#2978](https://github.com/exceljs/exceljs/pull/2978) | ⏳ Open (partial) | Sep 2025 |
+| Image reuse fix                                    | [#24](https://github.com/protobi/exceljs/issues/24) | [#2876](https://github.com/exceljs/exceljs/pull/2876) | ⏳ Open           | Feb 2024 |
+| Conditional formatting + hyperlinks corruption fix | [#25](https://github.com/protobi/exceljs/issues/25) | [#2803](https://github.com/exceljs/exceljs/pull/2803) | ⏳ Open           | Sep 2024 |
+| Conditional formatting stopIfTrue & operators      | [#26](https://github.com/protobi/exceljs/issues/26) | [#2736](https://github.com/exceljs/exceljs/pull/2736) | ⏳ Open           | Jul 2024 |
 
 **Total:** 9 PRs adopted from upstream, waiting for official merge
 
 ### 📝 Fork-Specific Features (Submitted to Upstream)
 
-| Feature/Fix | Our Issue | Upstream PR | Status | Date |
-|-------------|-----------|-------------|--------|------|
-| Multiple pivot tables support | [#5](https://github.com/protobi/exceljs/issues/5) | [#2995](https://github.com/exceljs/exceljs/pull/2995) | ⏳ Open | Nov 2025 |
-| XML special character escaping | [#3](https://github.com/protobi/exceljs/issues/3) | [#2996](https://github.com/exceljs/exceljs/pull/2996) | ⏳ Open | Nov 2025 |
-| Pivot table column width control | [#8](https://github.com/protobi/exceljs/issues/8) | [#2997](https://github.com/exceljs/exceljs/pull/2997) | ⏳ Open | Nov 2025 |
-| HAN CELL file support | - | [#3017](https://github.com/exceljs/exceljs/pull/3017) | ⏳ Open | Jan 2026 |
-| Data bar conditional formatting defaults | - | [#3018](https://github.com/exceljs/exceljs/pull/3018) | ⏳ Open | Jan 2026 |
+| Feature/Fix                              | Our Issue                                         | Upstream PR                                           | Status  | Date     |
+| ---------------------------------------- | ------------------------------------------------- | ----------------------------------------------------- | ------- | -------- |
+| Multiple pivot tables support            | [#5](https://github.com/protobi/exceljs/issues/5) | [#2995](https://github.com/exceljs/exceljs/pull/2995) | ⏳ Open | Nov 2025 |
+| XML special character escaping           | [#3](https://github.com/protobi/exceljs/issues/3) | [#2996](https://github.com/exceljs/exceljs/pull/2996) | ⏳ Open | Nov 2025 |
+| Pivot table column width control         | [#8](https://github.com/protobi/exceljs/issues/8) | [#2997](https://github.com/exceljs/exceljs/pull/2997) | ⏳ Open | Nov 2025 |
+| HAN CELL file support                    | -                                                 | [#3017](https://github.com/exceljs/exceljs/pull/3017) | ⏳ Open | Jan 2026 |
+| Data bar conditional formatting defaults | -                                                 | [#3018](https://github.com/exceljs/exceljs/pull/3018) | ⏳ Open | Jan 2026 |
 
 **Status:** All original contributions submitted, waiting for upstream review
 
-###  Community Fork Contributions (Adopted & Submitted)
+### Community Fork Contributions (Adopted & Submitted)
 
-| Feature/Fix | Our Issue | Source | Upstream PR | Status | Date |
-|-------------|-----------|--------|-------------|--------|------|
+| Feature/Fix        | Our Issue                                           | Source                                                              | Upstream PR                                           | Status  | Date     |
+| ------------------ | --------------------------------------------------- | ------------------------------------------------------------------- | ----------------------------------------------------- | ------- | -------- |
 | Table addRow() fix | [#23](https://github.com/protobi/exceljs/issues/23) | [rmartin93/exceljs-fork](https://github.com/rmartin93/exceljs-fork) | [#2998](https://github.com/exceljs/exceljs/pull/2998) | ⏳ Open | Nov 2025 |
 
 **Status:** Adopted from community fork, submitted to upstream
 
-###  Security & Maintenance
+### Security & Maintenance
 
-| Feature/Fix | Our Issue | Upstream PR | Status |
-|-------------|-----------|-------------|--------|
-| Add package-lock.json | [#10](https://github.com/protobi/exceljs/issues/10) | - | Fork-specific |
-| Run npm audit fix | [#11](https://github.com/protobi/exceljs/issues/11) | - | Fork-specific |
+| Feature/Fix           | Our Issue                                           | Upstream PR | Status        |
+| --------------------- | --------------------------------------------------- | ----------- | ------------- |
+| Add package-lock.json | [#10](https://github.com/protobi/exceljs/issues/10) | -           | Fork-specific |
+| Run npm audit fix     | [#11](https://github.com/protobi/exceljs/issues/11) | -           | Fork-specific |
 
 **Status:** Security improvements for our fork deployment
 
@@ -329,6 +349,7 @@ npm install exceljs
 ### When to Switch Back to Official
 
 Monitor these conditions:
+
 1. Upstream releases version with our features
 2. All critical PRs merged (#2885, #2915, etc.)
 3. Our unique features submitted and merged
@@ -355,6 +376,7 @@ npm install exceljs
 When upstream catches up, we will:
 
 1. **Add deprecation notice** to npm package
+
    ```bash
    npm deprecate @protobi/exceljs "Use official 'exceljs' package - our changes have been merged upstream"
    ```
@@ -374,21 +396,25 @@ When upstream catches up, we will:
 **Why it matters:** Upstream only supports one pivot table per workbook. We support multiple pivot tables from the same source data with unique cache IDs.
 
 **Code:**
+
 ```javascript
 // ✅ Works in @protobi/exceljs
 // ❌ Crashes in official exceljs
 
 const worksheet1 = workbook.addWorksheet('Data');
-worksheet1.addRows([/* data */]);
+worksheet1.addRows([
+  /* data */
+]);
 
 const worksheet2 = workbook.addWorksheet('Pivot1');
-worksheet2.addPivotTable({ sourceSheet: worksheet1, /* ... */ });
+worksheet2.addPivotTable({sourceSheet: worksheet1 /* ... */});
 
 const worksheet3 = workbook.addWorksheet('Pivot2');
-worksheet3.addPivotTable({ sourceSheet: worksheet1, /* ... */ }); // Works!
+worksheet3.addPivotTable({sourceSheet: worksheet1 /* ... */}); // Works!
 ```
 
 **Files changed:**
+
 - `lib/doc/pivot-table.js` - Unique cache IDs per pivot table
 - `lib/xlsx/xform/book/workbook-xform.js` - Support multiple cache definitions
 
@@ -399,6 +425,7 @@ worksheet3.addPivotTable({ sourceSheet: worksheet1, /* ... */ }); // Works!
 **Why it matters:** Count is a fundamental Excel pivot table aggregation. Upstream only supports sum.
 
 **Code:**
+
 ```javascript
 // ✅ Works in @protobi/exceljs
 // ❌ Not available in official exceljs (yet)
@@ -413,6 +440,7 @@ worksheet.addPivotTable({
 ```
 
 **Files changed:**
+
 - `lib/doc/pivot-table.js` - Accept count metric
 - `lib/xlsx/xform/pivot-table/pivot-table-xform.js` - Generate XML with subtotal="count"
 
@@ -423,6 +451,7 @@ worksheet.addPivotTable({
 **Why it matters:** Loading Excel files with tables and adding rows to them crashes in official exceljs. This is critical for template-based workflows.
 
 **Code:**
+
 ```javascript
 // ✅ Works in @protobi/exceljs
 // ❌ Crashes in official exceljs with "Cannot read properties of undefined (reading 'length')"
@@ -441,12 +470,14 @@ await workbook.xlsx.writeFile('output.xlsx');
 ```
 
 **What it fixes:**
+
 - "Cannot read properties of undefined (reading 'length')" error
 - Missing worksheet references in loaded tables
 - Table references not expanding dynamically when rows are added
 - Excel filter buttons disappearing after save
 
 **Files changed:**
+
 - `lib/doc/table.js` - Dynamic table reference updates, autoFilterRef handling
 - `lib/doc/worksheet.js` - Table loading compatibility fixes
 
@@ -463,12 +494,14 @@ See "Status Tracking" section above for 6 bug fixes adopted from upstream PRs.
 This fork maintains **100% API compatibility** with official exceljs.
 
 **What this means:**
+
 - ✅ Drop-in replacement: `require('exceljs')` works identically
 - ✅ All official features work exactly the same
 - ✅ Additional features are opt-in (won't break existing code)
 - ✅ Switching back to official requires zero code changes
 
 **Version mapping:**
+
 ```
 Official exceljs:     4.4.0
 This fork:            4.4.0-protobi.2
@@ -492,6 +525,7 @@ Please contribute to **upstream exceljs**, not this fork!
 ### For Fork-Specific Issues
 
 Only use our repo for:
+
 - Issues with our specific features (#5, #8)
 - Questions about migration
 - Fork maintenance
@@ -515,6 +549,7 @@ npm run test:integration -- --grep "Pivot Tables"
 ### Test Updates vs Upstream
 
 **New Test Files Added:**
+
 - `spec/integration/workbook/pivot-tables-with-count.spec.js` (78 lines)
   - Tests pivot table with `metric: 'count'` feature
   - Validates XML generation for count aggregation
@@ -524,11 +559,13 @@ npm run test:integration -- --grep "Pivot Tables"
   - Validates same image added multiple times maintains correct references
 
 **Test Infrastructure Changes:**
+
 - Browser tests disabled (puppeteer compatibility issues with updated dependencies)
 - Dev test dependencies updated: mocha 7→11, chai-xml 0.3→0.4
 - End-to-end tests: got API updated (v9→v11)
 
 **Test Results:**
+
 - Unit tests: 883 passing, 1 pending (unchanged from upstream)
 - Integration tests: 198 passing (includes 2 new tests above)
 - End-to-end tests: 1 passing
@@ -543,10 +580,12 @@ npm run test:integration -- --grep "Pivot Tables"
 ### 4.4.0-protobi.2 (2025-11-07)
 
 **Added:**
+
 - Pivot table count metric (upstream PR #2885)
 - 5 bug fixes from upstream PRs
 
 **Fixed:**
+
 - Boolean XML attribute parsing (#2851)
 - ExcelToDate validation (#2956)
 - DynamicFilter parsing (#2973)
@@ -554,12 +593,14 @@ npm run test:integration -- --grep "Pivot Tables"
 - Autofilter undefined guard (#2978)
 
 **Security:**
+
 - Added package-lock.json
 - Ran npm audit fix (reduced vulnerabilities)
 
 ### 4.4.0-protobi.1 (2025-11-06)
 
 **Initial fork release:**
+
 - Multiple pivot tables from same source
 - XML special character escaping fixes
 - Column width control for pivot tables
@@ -569,11 +610,13 @@ npm run test:integration -- --grep "Pivot Tables"
 ## Monitoring Upstream
 
 We actively monitor upstream for:
+
 1. **Our PRs being merged** - Track at https://github.com/exceljs/exceljs/pulls
 2. **New releases** - Watch https://github.com/exceljs/exceljs/releases
 3. **Breaking changes** - Review changelogs for compatibility
 
 **Current watch list:**
+
 - 9 adopted PRs awaiting merge (#2851, #2876, #2915, #2956, #2973, #2978, #2885, #2803, #2736)
 - 3 original PRs awaiting merge (#2995, #2996, #2997)
 - 1 community fork contribution awaiting merge (#2998)
@@ -589,6 +632,7 @@ We actively monitor upstream for:
 - **Questions:** [GitHub Discussions](https://github.com/protobi/exceljs/discussions)
 
 For official exceljs support:
+
 - Upstream discussions: https://github.com/exceljs/exceljs/discussions
 
 ---

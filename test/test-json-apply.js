@@ -5,15 +5,15 @@ const [, , filename] = process.argv;
 console.log('filename', filename);
 
 const wb = new Excel.Workbook({
-    creator : 'Me',
-    lastModifiedBy : 'Her',
-    created : new Date(1985, 8, 30),
-    modified : new Date(),
-    lastPrinted : new Date(2016, 9, 27),
-    title: 'Moby Dick',
-    subject: 'Whales',
-    author: 'Herman Melville',
-    manager: 'Dr. Smith',
+  creator: 'Me',
+  lastModifiedBy: 'Her',
+  created: new Date(1985, 8, 30),
+  modified: new Date(),
+  lastPrinted: new Date(2016, 9, 27),
+  title: 'Moby Dick',
+  subject: 'Whales',
+  author: 'Herman Melville',
+  manager: 'Dr. Smith',
 });
 
 // wb.creator = 'Me';
@@ -26,85 +26,79 @@ const wb = new Excel.Workbook({
 // wb.author='Herman Melville';
 // wb.manager= 'Dr. Smith';
 
-
 const ws = wb.addWorksheet('Foo', {
-    headerFooter: {
-        firstHeader: 'Hello Exceljs',
-        firstFooter: 'Hello World',
-    },
+  headerFooter: {
+    firstHeader: 'Hello Exceljs',
+    firstFooter: 'Hello World',
+  },
 });
 
-
 const now = new Date();
-const today = Date.UTC(
-    now.getUTCFullYear(),
-    now.getUTCMonth(),
-    now.getUTCDay()
-);
+const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDay());
 
 ws.columns = [{key: 'date', width: 32}, {key: 'number'}, {key: 'word'}];
 
 const words = [
-    'Twas',
-    'brillig',
-    'and',
-    'the',
-    'slithy',
-    'toves',
-    'did',
-    'gyre',
-    'and',
-    'gimble',
-    'in',
-    'the',
-    'wabe',
+  'Twas',
+  'brillig',
+  'and',
+  'the',
+  'slithy',
+  'toves',
+  'did',
+  'gyre',
+  'and',
+  'gimble',
+  'in',
+  'the',
+  'wabe',
 ];
 
 ws.getCell('A1').border = {
-    top: {style:'thin'},
-    left: {style:'thin'},
-    bottom: {style:'thin'},
-    right: {style:'thin'},
+  top: {style: 'thin'},
+  left: {style: 'thin'},
+  bottom: {style: 'thin'},
+  right: {style: 'thin'},
 };
 
 ws.getCell('A1').value = Math.PI;
 
 ws.addTable({
-    name: 'TestTable',
-    ref: 'B3',
-    headerRow: true,
-    totalsRow: true,
-    style: {
-        theme: 'TableStyleDark3',
-        showRowStripes: true,
+  name: 'TestTable',
+  ref: 'B3',
+  headerRow: true,
+  totalsRow: true,
+  style: {
+    theme: 'TableStyleDark3',
+    showRowStripes: true,
+  },
+  columns: [
+    {name: 'Date', totalsRowLabel: 'Totally', filterButton: true},
+    {
+      name: 'Id',
+      totalsRowFunction: 'max',
+      filterButton: true,
+      totalsRowResult: 8,
     },
-    columns: [
-        {name: 'Date', totalsRowLabel: 'Totally', filterButton: true},
-        {
-            name: 'Id',
-            totalsRowFunction: 'max',
-            filterButton: true,
-            totalsRowResult: 8,
-        },
-        {
-            name: 'Word',
-            filterButton: false,
-            style: {font: {bold: true, name: 'Comic Sans MS'}},
-        },  
-    ],
-    rows: words.map((word, i) => [new Date((+today) + (86400 * i)), i, word]),
+    {
+      name: 'Word',
+      filterButton: false,
+      style: {font: {bold: true, name: 'Comic Sans MS'}},
+    },
+  ],
+  // eslint-disable-next-line no-mixed-operators
+  rows: words.map((word, i) => [new Date(+today + 86400 * i), i, word]),
 });
-
 
 const stopwatch = new HrStopwatch();
 stopwatch.start();
 wb.xlsx
-    .writeFile(filename)
-    .then(() => {
-        const micros = stopwatch.microseconds;
-        console.log('Done.');
-        console.log('Time taken:', micros);
-    })
-    .catch(error => {
-        console.log(error.message);
-    });
+  .writeFile(filename)
+  .then(() => {
+    const micros = stopwatch.microseconds;
+    console.log('Done.');
+    console.log('Time taken:', micros);
+  })
+  .catch(error => {
+    console.log(error.message);
+  });

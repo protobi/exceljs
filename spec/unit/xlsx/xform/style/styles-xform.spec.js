@@ -26,9 +26,7 @@ describe('StylesXform', () => {
   describe('As StyleManager', () => {
     it('Renders empty model', () => {
       const stylesXform = new StylesXform(true);
-      const expectedXml = fs
-        .readFileSync(`${__dirname}/data/styles.2.2.xml`)
-        .toString();
+      const expectedXml = fs.readFileSync(`${__dirname}/data/styles.2.2.xml`).toString();
 
       const xmlStream = new XmlStream();
       stylesXform.render(xmlStream);

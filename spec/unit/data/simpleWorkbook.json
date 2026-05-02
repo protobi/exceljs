@@ -16,18 +16,14 @@
               "type": 2,
               "value": 7,
               "style": {},
-              "names": [
-                "Seven"
-              ]
+              "names": ["Seven"]
             },
             {
               "address": "B1",
               "type": 3,
               "value": "Hello, World!",
               "style": {},
-              "names": [
-                "Hello"
-              ]
+              "names": ["Hello"]
             },
             {
               "address": "C1",
@@ -66,9 +62,7 @@
               "formula": "A1",
               "result": 7,
               "style": {},
-              "names": [
-                "TheFormula"
-              ]
+              "names": ["TheFormula"]
             },
             {
               "address": "B2",
@@ -76,9 +70,7 @@
               "formula": "CONCATENATE(\"Hello\", \", \", \"World!\")",
               "result": "Hello, World!",
               "style": {},
-              "names": [
-                "TheFormula"
-              ]
+              "names": ["TheFormula"]
             },
             {
               "address": "C2",
@@ -110,22 +102,15 @@
   "definedNames": [
     {
       "name": "Seven",
-      "cells": [
-        "blort!undefined"
-      ]
+      "cells": ["blort!undefined"]
     },
     {
       "name": "Hello",
-      "cells": [
-        "blort!undefined"
-      ]
+      "cells": ["blort!undefined"]
     },
     {
       "name": "TheFormula",
-      "cells": [
-        "blort!undefined",
-        "blort!undefined"
-      ]
+      "cells": ["blort!undefined", "blort!undefined"]
     }
   ]
 }

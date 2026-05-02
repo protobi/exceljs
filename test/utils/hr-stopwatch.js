@@ -1,4 +1,4 @@
-const HrStopwatch = (module.exports = function() {
+const HrStopwatch = (module.exports = function () {
   this.total = 0;
 });
 
@@ -28,8 +28,10 @@ HrStopwatch.prototype = {
 
   get _span() {
     const hrNow = process.hrtime();
-    const start = this.hrStart[0] + (this.hrStart[1] / 1e9);
-    const finish = hrNow[0] + (hrNow[1] / 1e9);
+    // eslint-disable-next-line no-mixed-operators
+    const start = this.hrStart[0] + this.hrStart[1] / 1e9;
+    // eslint-disable-next-line no-mixed-operators
+    const finish = hrNow[0] + hrNow[1] / 1e9;
     return finish - start;
   },
 

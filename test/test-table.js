@@ -7,11 +7,7 @@ const wb = new Excel.Workbook();
 const ws = wb.addWorksheet('Foo');
 
 const now = new Date();
-const today = Date.UTC(
-  now.getUTCFullYear(),
-  now.getUTCMonth(),
-  now.getUTCDay()
-);
+const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDay());
 
 ws.columns = [{key: 'date', width: 32}, {key: 'number'}, {key: 'word'}];
 

@@ -38,8 +38,7 @@ resultSheet.columns = [
 function randomName(length) {
   length = length || 5;
   const text = [];
-  const possible =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
   for (let i = 0; i < length; i++)
     text.push(possible.charAt(Math.floor(Math.random() * possible.length)));
@@ -87,19 +86,14 @@ function reduceResults(times) {
 }
 
 function execute(options) {
-  console.log(
-    `Test Run ${options.workbook}, ${options.style}, ${options.str}, ${options.count}`
-  );
+  console.log(`Test Run ${options.workbook}, ${options.style}, ${options.str}, ${options.count}`);
 
   const wbOptions = {
     filename: testFilename,
     useStyles: options.style === 'styled',
     useSharedStrings: options.str === 'shared',
   };
-  const wb =
-    options.workbook === 'doc'
-      ? new Workbook(wbOptions)
-      : new WorkbookWriter(wbOptions);
+  const wb = options.workbook === 'doc' ? new Workbook(wbOptions) : new WorkbookWriter(wbOptions);
   const ws = wb.addWorksheet('data');
   ws.columns = [
     {header: 'Col 1', key: 'key', width: 25},
@@ -149,7 +143,7 @@ function runTest(options) {
 }
 
 function runTests(options) {
-  return function() {
+  return function () {
     const results = [];
     let promise = Promise.resolve();
     for (let pass = 0; pass < passes; pass++) {

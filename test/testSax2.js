@@ -2,7 +2,7 @@ const events = require('events');
 const Sax = require('sax');
 const utils = require('./utils/utils');
 
-const Row = function(r) {
+const Row = function (r) {
   this.number = r;
   this.cells = {};
 };

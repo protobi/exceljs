@@ -9,7 +9,7 @@ function testWrite(results) {
   const a = [];
 
   function test(size) {
-    return function() {
+    return function () {
       console.log(`Write: ${size}`);
       const text = utils.randomName(size);
       const sb = new StringBuf({size: SIZE + 10});
@@ -48,7 +48,7 @@ function testGrow(results) {
   const a = [];
 
   function test(size) {
-    return function() {
+    return function () {
       console.log(`Grow: ${size}`);
       const text = utils.randomName(size);
       const sb = new StringBuf({size: 8});

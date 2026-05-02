@@ -1,17 +1,17 @@
-const testXformHelper = require("../../test-xform-helper");
+const testXformHelper = require('../../test-xform-helper');
 
-const DatabarExtXform = verquire("xlsx/xform/sheet/cf-ext/databar-ext-xform");
+const DatabarExtXform = verquire('xlsx/xform/sheet/cf-ext/databar-ext-xform');
 
 const expectations = [
   {
-    title: "Default Set",
+    title: 'Default Set',
     create() {
       return new DatabarExtXform();
     },
     preparedModel: {
       cfvo: [
-        { type: "num", value: 5 },
-        { type: "num", value: 20 },
+        {type: 'num', value: 5},
+        {type: 'num', value: 20},
       ],
     },
     xml: `
@@ -27,17 +27,17 @@ const expectations = [
       gradient: true,
       negativeBarColorSameAsPositive: true,
       negativeBarBorderColorSameAsPositive: true,
-      axisPosition: "auto",
-      direction: "leftToRight",
+      axisPosition: 'auto',
+      direction: 'leftToRight',
       cfvo: [
-        { type: "num", value: 5 },
-        { type: "num", value: 20 },
+        {type: 'num', value: 5},
+        {type: 'num', value: 20},
       ],
     },
-    tests: ["render", "parse"],
+    tests: ['render', 'parse'],
   },
   {
-    title: "Default cfvo when not specified",
+    title: 'Default cfvo when not specified',
     create() {
       return new DatabarExtXform();
     },
@@ -48,10 +48,10 @@ const expectations = [
         <x14:cfvo type="max"/>
       </x14:dataBar>
     `,
-    tests: ["render"],
+    tests: ['render'],
   },
   {
-    title: "Non Default Set",
+    title: 'Non Default Set',
     create() {
       return new DatabarExtXform();
     },
@@ -62,12 +62,12 @@ const expectations = [
       border: true,
       negativeBarColorSameAsPositive: false,
       negativeBarBorderColorSameAsPositive: false,
-      axisPosition: "middle",
-      borderColor: { argb: "FFFF0000" },
-      negativeFillColor: { argb: "FF00FF00" },
-      axisColor: { argb: "FF0000FF" },
-      direction: "rightToLeft",
-      cfvo: [{ type: "autoMin" }, { type: "autoMax" }],
+      axisPosition: 'middle',
+      borderColor: {argb: 'FFFF0000'},
+      negativeFillColor: {argb: 'FF00FF00'},
+      axisColor: {argb: 'FF0000FF'},
+      direction: 'rightToLeft',
+      cfvo: [{type: 'autoMin'}, {type: 'autoMax'}],
     },
     xml: `
       <x14:dataBar
@@ -90,10 +90,10 @@ const expectations = [
     get parsedModel() {
       return this.preparedModel;
     },
-    tests: ["render", "parse"],
+    tests: ['render', 'parse'],
   },
 ];
 
-describe("DatabarExtXform", () => {
+describe('DatabarExtXform', () => {
   testXformHelper(expectations);
 });

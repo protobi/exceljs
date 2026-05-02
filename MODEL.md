@@ -6,9 +6,9 @@ The workbook and its components define a simple JavaScript Object model which ca
 
 ```javascript
 {
-    worksheets: [
-        // array of worksheet models
-    ]
+  worksheets: [
+    // array of worksheet models
+  ];
 }
 ```
 

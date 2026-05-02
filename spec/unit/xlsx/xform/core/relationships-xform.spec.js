@@ -11,10 +11,7 @@ const expectations = [
       return new RelationshipsXform();
     },
     preparedModel: require('./data/worksheet.rels.1.json'),
-    xml: fs
-      .readFileSync(`${__dirname}/data/worksheet.rels.xml`)
-      .toString()
-      .replace(/\r\n/g, '\n'),
+    xml: fs.readFileSync(`${__dirname}/data/worksheet.rels.xml`).toString().replace(/\r\n/g, '\n'),
     get parsedModel() {
       return this.preparedModel;
     },

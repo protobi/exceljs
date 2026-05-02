@@ -13,7 +13,7 @@ jobs:
           fetch-depth: 0
       - uses: chrysanthos/simple-asset-size-reporter@1.0.2
         with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          repo-token: '${{ secrets.GITHUB_TOKEN }}'
           files: '["dist/*.js"]'
-          with-same: "false"
-          build-assets: "npm run install-build"
+          with-same: 'false'
+          build-assets: 'npm run install-build'

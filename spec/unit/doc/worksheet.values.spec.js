@@ -51,16 +51,12 @@ describe('Worksheet', () => {
       expect(ws.getCell('D1').value).to.equal(now);
       expect(ws.getCell('E1').value).to.equal('Hello, World!');
       expect(ws.getCell('F1').value.text).to.equal('www.google.com');
-      expect(ws.getCell('F1').value.hyperlink).to.equal(
-        'http://www.google.com'
-      );
+      expect(ws.getCell('F1').value.hyperlink).to.equal('http://www.google.com');
 
       expect(ws.getCell('A2').value.formula).to.equal('A1');
       expect(ws.getCell('A2').value.result).to.equal(7);
 
-      expect(ws.getCell('B2').value.formula).to.equal(
-        'CONCATENATE("Hello", ", ", "World!")'
-      );
+      expect(ws.getCell('B2').value.formula).to.equal('CONCATENATE("Hello", ", ", "World!")');
       expect(ws.getCell('B2').value.result).to.equal('Hello, World!');
 
       expect(ws.getCell('C2').value.formula).to.equal('D1');
@@ -299,11 +295,7 @@ describe('Worksheet', () => {
 
       const dateValue1 = new Date(1970, 1, 1);
       const dateValue2 = new Date(1965, 1, 7);
-      const rows = [
-        ,
-        [, 1, 'John Doe', , dateValue1],
-        [, 2, 'Jane Doe', , dateValue2],
-      ];
+      const rows = [, [, 1, 'John Doe', , dateValue1], [, 2, 'Jane Doe', , dateValue2]];
       const row3 = [];
       row3[1] = 3;
       row3[3] = 'Sam';
@@ -348,215 +340,75 @@ describe('Worksheet', () => {
       describe('Rows', () => {
         it('Remove only', () => {
           const wb = new Excel.Workbook();
-          testUtils.createTestBook(
-            wb,
-            'xlsx',
-            ['splice.rows.removeOnly'],
-            options
-          );
-          testUtils.checkTestBook(
-            wb,
-            'xlsx',
-            ['splice.rows.removeOnly'],
-            options
-          );
+          testUtils.createTestBook(wb, 'xlsx', ['splice.rows.removeOnly'], options);
+          testUtils.checkTestBook(wb, 'xlsx', ['splice.rows.removeOnly'], options);
         });
         it('Remove and insert fewer', () => {
           const wb = new Excel.Workbook();
-          testUtils.createTestBook(
-            wb,
-            'xlsx',
-            ['splice.rows.insertFewer'],
-            options
-          );
-          testUtils.checkTestBook(
-            wb,
-            'xlsx',
-            ['splice.rows.insertFewer'],
-            options
-          );
+          testUtils.createTestBook(wb, 'xlsx', ['splice.rows.insertFewer'], options);
+          testUtils.checkTestBook(wb, 'xlsx', ['splice.rows.insertFewer'], options);
         });
         it('Remove and insert same', () => {
           const wb = new Excel.Workbook();
-          testUtils.createTestBook(
-            wb,
-            'xlsx',
-            ['splice.rows.insertSame'],
-            options
-          );
-          testUtils.checkTestBook(
-            wb,
-            'xlsx',
-            ['splice.rows.insertSame'],
-            options
-          );
+          testUtils.createTestBook(wb, 'xlsx', ['splice.rows.insertSame'], options);
+          testUtils.checkTestBook(wb, 'xlsx', ['splice.rows.insertSame'], options);
         });
         it('Remove and insert more', () => {
           const wb = new Excel.Workbook();
-          testUtils.createTestBook(
-            wb,
-            'xlsx',
-            ['splice.rows.insertMore'],
-            options
-          );
-          testUtils.checkTestBook(
-            wb,
-            'xlsx',
-            ['splice.rows.insertMore'],
-            options
-          );
+          testUtils.createTestBook(wb, 'xlsx', ['splice.rows.insertMore'], options);
+          testUtils.checkTestBook(wb, 'xlsx', ['splice.rows.insertMore'], options);
         });
         it('Remove style', () => {
           const wb = new Excel.Workbook();
-          testUtils.createTestBook(
-            wb,
-            'xlsx',
-            ['splice.rows.removeStyle'],
-            options
-          );
-          testUtils.checkTestBook(
-            wb,
-            'xlsx',
-            ['splice.rows.removeStyle'],
-            options
-          );
+          testUtils.createTestBook(wb, 'xlsx', ['splice.rows.removeStyle'], options);
+          testUtils.checkTestBook(wb, 'xlsx', ['splice.rows.removeStyle'], options);
         });
         it('Insert style', () => {
           const wb = new Excel.Workbook();
-          testUtils.createTestBook(
-            wb,
-            'xlsx',
-            ['splice.rows.insertStyle'],
-            options
-          );
-          testUtils.checkTestBook(
-            wb,
-            'xlsx',
-            ['splice.rows.insertStyle'],
-            options
-          );
+          testUtils.createTestBook(wb, 'xlsx', ['splice.rows.insertStyle'], options);
+          testUtils.checkTestBook(wb, 'xlsx', ['splice.rows.insertStyle'], options);
         });
         it('Replace style', () => {
           const wb = new Excel.Workbook();
-          testUtils.createTestBook(
-            wb,
-            'xlsx',
-            ['splice.rows.replaceStyle'],
-            options
-          );
-          testUtils.checkTestBook(
-            wb,
-            'xlsx',
-            ['splice.rows.replaceStyle'],
-            options
-          );
+          testUtils.createTestBook(wb, 'xlsx', ['splice.rows.replaceStyle'], options);
+          testUtils.checkTestBook(wb, 'xlsx', ['splice.rows.replaceStyle'], options);
         });
         it('Remove defined names', () => {
           const wb = new Excel.Workbook();
-          testUtils.createTestBook(
-            wb,
-            'xlsx',
-            ['splice.rows.removeDefinedNames'],
-            options
-          );
-          testUtils.checkTestBook(
-            wb,
-            'xlsx',
-            ['splice.rows.removeDefinedNames'],
-            options
-          );
+          testUtils.createTestBook(wb, 'xlsx', ['splice.rows.removeDefinedNames'], options);
+          testUtils.checkTestBook(wb, 'xlsx', ['splice.rows.removeDefinedNames'], options);
         });
         it('Insert defined names', () => {
           const wb = new Excel.Workbook();
-          testUtils.createTestBook(
-            wb,
-            'xlsx',
-            ['splice.rows.insertDefinedNames'],
-            options
-          );
-          testUtils.checkTestBook(
-            wb,
-            'xlsx',
-            ['splice.rows.insertDefinedNames'],
-            options
-          );
+          testUtils.createTestBook(wb, 'xlsx', ['splice.rows.insertDefinedNames'], options);
+          testUtils.checkTestBook(wb, 'xlsx', ['splice.rows.insertDefinedNames'], options);
         });
         it('Replace defined names', () => {
           const wb = new Excel.Workbook();
-          testUtils.createTestBook(
-            wb,
-            'xlsx',
-            ['splice.rows.replaceDefinedNames'],
-            options
-          );
-          testUtils.checkTestBook(
-            wb,
-            'xlsx',
-            ['splice.rows.replaceDefinedNames'],
-            options
-          );
+          testUtils.createTestBook(wb, 'xlsx', ['splice.rows.replaceDefinedNames'], options);
+          testUtils.checkTestBook(wb, 'xlsx', ['splice.rows.replaceDefinedNames'], options);
         });
       });
       describe('Columns', () => {
         it('splices columns', () => {
           const wb = new Excel.Workbook();
-          testUtils.createTestBook(
-            wb,
-            'xlsx',
-            ['splice.columns.removeOnly'],
-            options
-          );
-          testUtils.checkTestBook(
-            wb,
-            'xlsx',
-            ['splice.columns.removeOnly'],
-            options
-          );
+          testUtils.createTestBook(wb, 'xlsx', ['splice.columns.removeOnly'], options);
+          testUtils.checkTestBook(wb, 'xlsx', ['splice.columns.removeOnly'], options);
         });
         it('Remove and insert fewer', () => {
           const wb = new Excel.Workbook();
-          testUtils.createTestBook(
-            wb,
-            'xlsx',
-            ['splice.columns.insertFewer'],
-            options
-          );
-          testUtils.checkTestBook(
-            wb,
-            'xlsx',
-            ['splice.columns.insertFewer'],
-            options
-          );
+          testUtils.createTestBook(wb, 'xlsx', ['splice.columns.insertFewer'], options);
+          testUtils.checkTestBook(wb, 'xlsx', ['splice.columns.insertFewer'], options);
         });
         it('Remove and insert same', () => {
           const wb = new Excel.Workbook();
-          testUtils.createTestBook(
-            wb,
-            'xlsx',
-            ['splice.columns.insertSame'],
-            options
-          );
-          testUtils.checkTestBook(
-            wb,
-            'xlsx',
-            ['splice.columns.insertSame'],
-            options
-          );
+          testUtils.createTestBook(wb, 'xlsx', ['splice.columns.insertSame'], options);
+          testUtils.checkTestBook(wb, 'xlsx', ['splice.columns.insertSame'], options);
         });
         it('Remove and insert more', () => {
           const wb = new Excel.Workbook();
-          testUtils.createTestBook(
-            wb,
-            'xlsx',
-            ['splice.columns.insertMore'],
-            options
-          );
-          testUtils.checkTestBook(
-            wb,
-            'xlsx',
-            ['splice.columns.insertMore'],
-            options
-          );
+          testUtils.createTestBook(wb, 'xlsx', ['splice.columns.insertMore'], options);
+          testUtils.checkTestBook(wb, 'xlsx', ['splice.columns.insertMore'], options);
         });
         it('handles column keys', () => {
           const wb = new Excel.Workbook();
@@ -735,93 +587,33 @@ describe('Worksheet', () => {
 
         it('Remove style', () => {
           const wb = new Excel.Workbook();
-          testUtils.createTestBook(
-            wb,
-            'xlsx',
-            ['splice.columns.removeStyle'],
-            options
-          );
-          testUtils.checkTestBook(
-            wb,
-            'xlsx',
-            ['splice.columns.removeStyle'],
-            options
-          );
+          testUtils.createTestBook(wb, 'xlsx', ['splice.columns.removeStyle'], options);
+          testUtils.checkTestBook(wb, 'xlsx', ['splice.columns.removeStyle'], options);
         });
         it('Insert style', () => {
           const wb = new Excel.Workbook();
-          testUtils.createTestBook(
-            wb,
-            'xlsx',
-            ['splice.columns.insertStyle'],
-            options
-          );
-          testUtils.checkTestBook(
-            wb,
-            'xlsx',
-            ['splice.columns.insertStyle'],
-            options
-          );
+          testUtils.createTestBook(wb, 'xlsx', ['splice.columns.insertStyle'], options);
+          testUtils.checkTestBook(wb, 'xlsx', ['splice.columns.insertStyle'], options);
         });
         it('Replace style', () => {
           const wb = new Excel.Workbook();
-          testUtils.createTestBook(
-            wb,
-            'xlsx',
-            ['splice.columns.replaceStyle'],
-            options
-          );
-          testUtils.checkTestBook(
-            wb,
-            'xlsx',
-            ['splice.columns.replaceStyle'],
-            options
-          );
+          testUtils.createTestBook(wb, 'xlsx', ['splice.columns.replaceStyle'], options);
+          testUtils.checkTestBook(wb, 'xlsx', ['splice.columns.replaceStyle'], options);
         });
         it('Remove defined names', () => {
           const wb = new Excel.Workbook();
-          testUtils.createTestBook(
-            wb,
-            'xlsx',
-            ['splice.columns.removeDefinedNames'],
-            options
-          );
-          testUtils.checkTestBook(
-            wb,
-            'xlsx',
-            ['splice.columns.removeDefinedNames'],
-            options
-          );
+          testUtils.createTestBook(wb, 'xlsx', ['splice.columns.removeDefinedNames'], options);
+          testUtils.checkTestBook(wb, 'xlsx', ['splice.columns.removeDefinedNames'], options);
         });
         it('Insert defined names', () => {
           const wb = new Excel.Workbook();
-          testUtils.createTestBook(
-            wb,
-            'xlsx',
-            ['splice.columns.insertDefinedNames'],
-            options
-          );
-          testUtils.checkTestBook(
-            wb,
-            'xlsx',
-            ['splice.columns.insertDefinedNames'],
-            options
-          );
+          testUtils.createTestBook(wb, 'xlsx', ['splice.columns.insertDefinedNames'], options);
+          testUtils.checkTestBook(wb, 'xlsx', ['splice.columns.insertDefinedNames'], options);
         });
         it('Replace defined names', () => {
           const wb = new Excel.Workbook();
-          testUtils.createTestBook(
-            wb,
-            'xlsx',
-            ['splice.columns.replaceDefinedNames'],
-            options
-          );
-          testUtils.checkTestBook(
-            wb,
-            'xlsx',
-            ['splice.columns.replaceDefinedNames'],
-            options
-          );
+          testUtils.createTestBook(wb, 'xlsx', ['splice.columns.replaceDefinedNames'], options);
+          testUtils.checkTestBook(wb, 'xlsx', ['splice.columns.replaceDefinedNames'], options);
         });
       });
     });

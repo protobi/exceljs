@@ -216,7 +216,7 @@ describe('Cell', () => {
     expect(a1.type).to.equal(Enums.ValueType.Hyperlink);
   });
 
-  it('doesn\'t upgrade from non-string to hyperlink', () => {
+  it("doesn't upgrade from non-string to hyperlink", () => {
     sheetMock.getRow(1);
     sheetMock.getColumn(1);
 
@@ -331,9 +331,7 @@ describe('Cell', () => {
 
     a1.value = '<script>alert("yoohoo")</script>';
 
-    expect(a1.html).to.equal(
-      '&lt;script&gt;alert(&quot;yoohoo&quot;)&lt;/script&gt;'
-    );
+    expect(a1.html).to.equal('&lt;script&gt;alert(&quot;yoohoo&quot;)&lt;/script&gt;');
   });
   it('can set comment', () => {
     const a1 = sheetMock.getCell('A1');
@@ -398,12 +396,7 @@ describe('Cell', () => {
     expect(a1.model.comment.note.texts).to.deep.equal(comment.texts);
     expect(a1.model.comment.note.protection).to.deep.equal(comment.protection);
     expect(a1.model.comment.note.margins.insetmode).to.equal('auto');
-    expect(a1.model.comment.note.margins.inset).to.deep.equal([
-      0.13,
-      0.13,
-      0.25,
-      0.25,
-    ]);
+    expect(a1.model.comment.note.margins.inset).to.deep.equal([0.13, 0.13, 0.25, 0.25]);
     expect(a1.model.comment.note.editAs).to.equal('absolute');
   });
 });

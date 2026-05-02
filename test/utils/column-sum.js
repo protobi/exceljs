@@ -1,6 +1,6 @@
 const _ = require('../../lib/utils/under-dash.js');
 
-const ColumnSum = (module.exports = function(columns) {
+const ColumnSum = (module.exports = function (columns) {
   this.columns = columns;
   this.sums = [];
   this.count = 0;
@@ -21,8 +21,6 @@ ColumnSum.prototype = {
     return this.sums.join(', ');
   },
   toAverages() {
-    return this.sum
-      .map(value => (value ? value / this.count : value))
-      .join(', ');
+    return this.sum.map(value => (value ? value / this.count : value)).join(', ');
   },
 };

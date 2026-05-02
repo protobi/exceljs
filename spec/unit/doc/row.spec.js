@@ -206,17 +206,7 @@ describe('Row', () => {
       const row = sheet.getRow(1);
       row.values = [1, 2, 3, 4, 5, 6, 7, 8];
       row.splice(4, 3, 'four', 'five', 'six');
-      expect(row.values).to.deep.equal([
-        ,
-        1,
-        2,
-        3,
-        'four',
-        'five',
-        'six',
-        7,
-        8,
-      ]);
+      expect(row.values).to.deep.equal([, 1, 2, 3, 'four', 'five', 'six', 7, 8]);
     });
 
     it('remove and insert more', () => {
@@ -224,18 +214,7 @@ describe('Row', () => {
       const row = sheet.getRow(1);
       row.values = [1, 2, 3, 4, 5, 6, 7, 8];
       row.splice(4, 3, 'four', 'five', 'six', 'six and a half');
-      expect(row.values).to.deep.equal([
-        ,
-        1,
-        2,
-        3,
-        'four',
-        'five',
-        'six',
-        'six and a half',
-        7,
-        8,
-      ]);
+      expect(row.values).to.deep.equal([, 1, 2, 3, 'four', 'five', 'six', 'six and a half', 7, 8]);
     });
   });
 
@@ -307,9 +286,7 @@ describe('Row', () => {
     row3.getCell(1).value = 5;
     row3.outlineLevel = 1;
     expect(row3.model).to.deep.equal({
-      cells: [
-        {address: 'A3', type: Enums.ValueType.Number, value: 5, style: {}},
-      ],
+      cells: [{address: 'A3', type: Enums.ValueType.Number, value: 5, style: {}}],
       number: 3,
       min: 1,
       max: 1,

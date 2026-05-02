@@ -159,7 +159,7 @@ const fills = {
 };
 
 let passed = true;
-const assert = function(value, failMessage, passMessage) {
+const assert = function (value, failMessage, passMessage) {
   if (!value) {
     if (failMessage) {
       console.log(failMessage);
@@ -170,7 +170,7 @@ const assert = function(value, failMessage, passMessage) {
   }
 };
 
-const assertFont = function(value, expected, address) {
+const assertFont = function (value, expected, address) {
   // console.log('assertFont', address, JSON.stringify(value), JSON.stringify(expected));
   assert(value, `Expected to find font object at ${address}`);
   _.each(expected, (item, name) => {
@@ -180,14 +180,11 @@ const assertFont = function(value, expected, address) {
     );
   });
   _.each(value, (item, name) => {
-    assert(
-      expected[name],
-      `Found unexpected ${address}.font[${name}] = ${value[name]}`
-    );
+    assert(expected[name], `Found unexpected ${address}.font[${name}] = ${value[name]}`);
   });
 };
 
-const assertEqual = function(address, name, value, expected) {
+const assertEqual = function (address, name, value, expected) {
   assert(
     _.isEqual(value, expected),
     `Expected Cell[${address}] ${name} to be ${JSON.stringify(
@@ -217,11 +214,7 @@ wb.xlsx.readFile(filename).then(() => {
   const column9 = ws.getColumn(9);
   assert(
     column9 && column9.hidden,
-    `Expected column 9 to be hidden: \n${JSON.stringify(
-      column9.defn,
-      null,
-      '  '
-    )}`
+    `Expected column 9 to be hidden: \n${JSON.stringify(column9.defn, null, '  ')}`
   );
 
   const row16 = ws.getRow(16);
@@ -241,9 +234,7 @@ wb.xlsx.readFile(filename).then(() => {
   );
   assert(
     ws.getCell('C2').numFmt === '"£"#,##0.00;[Red]-"£"#,##0.00',
-    `Expected C2 numFmt to be "£"#,##0.00;[Red]-"£"#,##0.00, was ${
-      ws.getCell('C2').numFmt
-    }`
+    `Expected C2 numFmt to be "£"#,##0.00;[Red]-"£"#,##0.00, was ${ws.getCell('C2').numFmt}`
   );
   assertFont(ws.getCell('C2').font, fonts.arialBlackUI14, 'C2');
 
@@ -255,10 +246,7 @@ wb.xlsx.readFile(filename).then(() => {
 
   assert(ws.getCell('F2').value === true, 'Expected F2 to be true');
   assert(ws.getCell('G2').value.error === '#N/A', 'Expected G2 to be #N/A');
-  assert(
-    ws.getCell('H2').value.error === '#VALUE!',
-    'Expected H2 to be #VALUE!'
-  );
+  assert(ws.getCell('H2').value.error === '#VALUE!', 'Expected H2 to be #VALUE!');
 
   assert(
     ws.getCell('C5').value.formula,
@@ -280,9 +268,7 @@ wb.xlsx.readFile(filename).then(() => {
   );
   assert(
     ws.getCell('D9').numFmt === '[Green]#,##0 ;[Red](#,##0)',
-    `Expected D9 numFmt to be "[Green]#,##0 ;[Red](#,##0)", was ${
-      ws.getCell('D9').numFmt
-    }`
+    `Expected D9 numFmt to be "[Green]#,##0 ;[Red](#,##0)", was ${ws.getCell('D9').numFmt}`
   );
   assert(
     ws.getCell('E9').numFmt === '#0.000',
@@ -331,10 +317,7 @@ wb.xlsx.readFile(filename).then(() => {
   });
 
   const row12 = ws.getRow(12);
-  assert(
-    row12.height === 40,
-    `Expected Row 12 to be height 40, was ${row12.height}`
-  );
+  assert(row12.height === 40, `Expected Row 12 to be height 40, was ${row12.height}`);
   assert(
     _.isEqual(row12.getCell(1).fill, fills.blueWhiteHGrad),
     `Expected [12,1] fill to be ${JSON.stringify(

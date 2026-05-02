@@ -5,9 +5,9 @@ const main = {
   cleanDir(path) {
     const deferred = Promise.defer();
 
-    const remove = function(file) {
+    const remove = function (file) {
       const myDeferred = Promise.defer();
-      const myHandler = function(err) {
+      const myHandler = function (err) {
         if (err) {
           myDeferred.reject(err);
         } else {
@@ -58,8 +58,7 @@ const main = {
   randomName(length) {
     length = length || 5;
     const text = [];
-    const possible =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
     for (let i = 0; i < length; i++)
       text.push(possible.charAt(Math.floor(Math.random() * possible.length)));

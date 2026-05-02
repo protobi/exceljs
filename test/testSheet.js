@@ -23,7 +23,7 @@ ws.getCell('D1').value = 3.14;
 ws.getCell('C3').value = 'Boo!';
 
 ws.getCell('A4').value = 'merge 3x1';
-ws.getCell('B4').value = 'Won\'t see this';
+ws.getCell('B4').value = "Won't see this";
 ws.mergeCells('A4:C4');
 
 ws.getCell('B5').value = 'merge 3x3';

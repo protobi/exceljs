@@ -53,10 +53,7 @@ const self = {
       ws.getCell(row, 1).value = tools.concatenateFormula(type);
       self.dataValidations.operators.forEach((operator, cIndex) => {
         const col = 3 + cIndex;
-        ws.getCell(row, col).dataValidation = self.createDataValidations(
-          type,
-          operator
-        );
+        ws.getCell(row, col).dataValidation = self.createDataValidations(type, operator);
       });
     });
 
@@ -88,21 +85,8 @@ const self = {
     ['A22', 'A23'].forEach(address => {
       ws.getCell(address).value = tools.concatenateFormula('Five Numbers');
     });
-    [
-      'B22',
-      'C22',
-      'D22',
-      'E22',
-      'F22',
-      'B23',
-      'C23',
-      'D23',
-      'E23',
-      'F23',
-    ].forEach(address => {
-      ws.getCell(address).dataValidation = JSON.parse(
-        JSON.stringify(self.dataValidations.shared)
-      );
+    ['B22', 'C22', 'D22', 'E22', 'F22', 'B23', 'C23', 'D23', 'E23', 'F23'].forEach(address => {
+      ws.getCell(address).dataValidation = JSON.parse(JSON.stringify(self.dataValidations.shared));
     });
   },
 
@@ -110,15 +94,9 @@ const self = {
     const ws = wb.getWorksheet('data-validations');
     expect(ws).to.not.be.undefined();
 
-    expect(ws.getCell('B1').dataValidation).to.deep.equal(
-      self.dataValidations.B1
-    );
-    expect(ws.getCell('B3').dataValidation).to.deep.equal(
-      self.dataValidations.B3
-    );
-    expect(ws.getCell('B5').dataValidation).to.deep.equal(
-      self.dataValidations.B5
-    );
+    expect(ws.getCell('B1').dataValidation).to.deep.equal(self.dataValidations.B1);
+    expect(ws.getCell('B3').dataValidation).to.deep.equal(self.dataValidations.B3);
+    expect(ws.getCell('B5').dataValidation).to.deep.equal(self.dataValidations.B5);
 
     self.dataValidations.types.forEach((type, rIndex) => {
       const row = 8 + rIndex;
@@ -131,38 +109,15 @@ const self = {
       });
     });
 
-    expect(ws.getCell('B13').dataValidation).to.deep.equal(
-      self.dataValidations.B13
-    );
-    expect(ws.getCell('E13').dataValidation).to.deep.equal(
-      self.dataValidations.E13
-    );
-    expect(ws.getCell('B15').dataValidation).to.deep.equal(
-      self.dataValidations.B15
-    );
-    expect(ws.getCell('B17').dataValidation).to.deep.equal(
-      self.dataValidations.B17
-    );
-    expect(ws.getCell('B19').dataValidation).to.deep.equal(
-      self.dataValidations.B19
-    );
+    expect(ws.getCell('B13').dataValidation).to.deep.equal(self.dataValidations.B13);
+    expect(ws.getCell('E13').dataValidation).to.deep.equal(self.dataValidations.E13);
+    expect(ws.getCell('B15').dataValidation).to.deep.equal(self.dataValidations.B15);
+    expect(ws.getCell('B17').dataValidation).to.deep.equal(self.dataValidations.B17);
+    expect(ws.getCell('B19').dataValidation).to.deep.equal(self.dataValidations.B19);
 
     // two rows of the same validation to test dataValidation optimisation
-    [
-      'B22',
-      'C22',
-      'D22',
-      'E22',
-      'F22',
-      'B23',
-      'C23',
-      'D23',
-      'E23',
-      'F23',
-    ].forEach(address => {
-      expect(ws.getCell(address).dataValidation).to.deep.equal(
-        self.dataValidations.shared
-      );
+    ['B22', 'C22', 'D22', 'E22', 'F22', 'B23', 'C23', 'D23', 'E23', 'F23'].forEach(address => {
+      expect(ws.getCell(address).dataValidation).to.deep.equal(self.dataValidations.shared);
     });
   },
 };

@@ -48,9 +48,7 @@ describe('XmlStream', () => {
     xmlStream.writeText('<escape this!>');
     xmlStream.closeNode();
     xmlStream.closeNode();
-    expect(xmlStream.xml).to.equal(
-      '<root><l1>&lt;escape this!&gt;</l1></root>'
-    );
+    expect(xmlStream.xml).to.equal('<root><l1>&lt;escape this!&gt;</l1></root>');
   });
   it('attributes are escaped', () => {
     const xmlStream = new XmlStream();

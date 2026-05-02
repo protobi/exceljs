@@ -40,9 +40,7 @@ describe('under-dash', () => {
           const a = values[i];
           const b = values[j];
 
-          const assertion = `${showVal(a)} ${i === j ? '==' : '!='} ${showVal(
-            b
-          )}`;
+          const assertion = `${showVal(a)} ${i === j ? '==' : '!='} ${showVal(b)}`;
           expect(_.isEqual(a, b)).to.equal(i === j, `expected ${assertion}`);
         }
       }
@@ -54,9 +52,7 @@ describe('under-dash', () => {
           const a = [values[i]];
           const b = [values[j]];
 
-          const assertion = `${showVal(a)} ${i === j ? '==' : '!='} ${showVal(
-            b
-          )}`;
+          const assertion = `${showVal(a)} ${i === j ? '==' : '!='} ${showVal(b)}`;
           expect(_.isEqual(a, b)).to.equal(i === j, `expected ${assertion}`);
         }
       }
@@ -68,9 +64,7 @@ describe('under-dash', () => {
           const a = {key: values[i]};
           const b = {key: values[j]};
 
-          const assertion = `${showVal(a)} ${i === j ? '==' : '!='} ${showVal(
-            b
-          )}`;
+          const assertion = `${showVal(a)} ${i === j ? '==' : '!='} ${showVal(b)}`;
           expect(_.isEqual(a, b)).to.equal(i === j, `expected ${assertion}`);
         }
       }

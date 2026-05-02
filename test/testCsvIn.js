@@ -5,7 +5,7 @@ const filename = process.argv[2];
 const wb = new Excel.Workbook();
 
 let passed = true;
-const assert = function(value, failMessage, passMessage) {
+const assert = function (value, failMessage, passMessage) {
   if (!value) {
     if (failMessage) {
       console.log(failMessage);
@@ -25,15 +25,12 @@ const assert = function(value, failMessage, passMessage) {
 //   );
 // };
 
-const assertDate = function(address, cell, expected) {
+const assertDate = function (address, cell, expected) {
   assert(
     cell.type === Excel.ValueType.Date,
     `expected ${address} type to be Date, was ${cell.type}`
   );
-  assert(
-    cell.value instanceof Date,
-    `expected  value ${address} to be a Date, was ${cell.value}`
-  );
+  assert(cell.value instanceof Date, `expected  value ${address} to be a Date, was ${cell.value}`);
   const {value} = cell;
   assert(
     value.getYear() === expected.getYear(),
@@ -113,10 +110,7 @@ wb.csv.readFile(filename, options).then(() => {
     ws.getCell('B7').type === Excel.ValueType.Number,
     `expected B7 type to be Number, was ${ws.getCell('B7').type}`
   );
-  assert(
-    ws.getCell('C7').value === null,
-    `Expected C7 == null, was ${ws.getCell('C7').value}`
-  );
+  assert(ws.getCell('C7').value === null, `Expected C7 == null, was ${ws.getCell('C7').value}`);
   assert(
     ws.getCell('C7').type === Excel.ValueType.Null,
     `expected C7 type to be Null, was ${ws.getCell('C7').type}`

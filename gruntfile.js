@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-babel');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-terser');
