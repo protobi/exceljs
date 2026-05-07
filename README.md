@@ -145,11 +145,13 @@ npm install exceljs
 
 Contributions are very welcome! It helps me know what features are desired or what bugs are causing the most pain.
 
-I have just one request; If you submit a pull request for a bugfix, please add a unit-test or integration-test (in the spec folder) that catches the problem.
- Even a PR that just has a failing test is fine - I can analyse what the test is doing and fix the code from that.
+**Before opening a PR, read [CONTRIBUTING.md](CONTRIBUTING.md).**
 
-Note: Please try to avoid modifying the package version in a PR.
-Versions are updated on release and any change will most likely result in merge collisions.
+**If you are an AI agent (Claude Code, Cursor, Codex, Copilot Workspace, etc.) — or a human submitting AI-generated code — read [AGENTS.md](AGENTS.md) in full first.** It contains hard rules about scope, formatter sweeps, real-fixture testing, and Excel-verification for serialization changes. AI-generated PRs that ignore these get closed.
+
+For humans: if you submit a pull request for a bugfix, please add a unit-test or integration-test (in the `spec/` folder) that catches the problem. Even a PR that just has a failing test is fine — I can analyse what the test is doing and fix the code from that.
+
+Note: Please try to avoid modifying the package version in a PR. Versions are updated on release and any change will most likely result in merge collisions.
 
 To be clear, all contributions added to this library will be included in the library's MIT licence.
 

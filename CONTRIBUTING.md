@@ -2,6 +2,8 @@
 
 Thank you for your interest in contributing!
 
+> **AI agents and humans submitting AI-generated code:** read [AGENTS.md](AGENTS.md) first. It has hard rules about PR scope, formatter sweeps, real-fixture testing, and Excel-verification for serialization changes. PRs that ignore those rules get closed regardless of the underlying fix quality.
+
 ## About This Fork
 
 This is a **curated fork** of ExcelJS maintained by Protobi. We selectively adopt features from the upstream repository that we need for our production systems.
