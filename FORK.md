@@ -28,6 +28,35 @@ This AI-assisted workflow enables rapid response to community issues while maint
 
 ## Fork Release History
 
+### 4.4.0-protobi.10 (2026-05-06)
+
+**Bug Fix: richText shared-string deduplication in streaming writer** ([#66](https://github.com/protobi/exceljs/pull/66), cherry-picked from [#50](https://github.com/protobi/exceljs/pull/50) by @gwkline)
+
+When using `WorkbookWriter` with `useSharedStrings` enabled, every cell containing richText collapsed into a single shared-string entry, corrupting the strings table. Root cause: `SharedStrings.add()` used the value directly as a hash key; richText objects coerced to the string `"[object Object]"`, deduping all of them into one entry.
+
+**Fix:** Hash richText values by their rendered XML representation (via `SharedStringXform.toXml()`). Plain strings unchanged.
+
+**Tests:** Adds two regression tests (`spec/unit/utils/shared-strings.spec.js`):
+1. Equal richText values share one entry; different ones get separate entries
+2. richText values that differ only in formatting are NOT deduped
+
+**Upstream context:** This bug was first reported as [exceljs/exceljs#2267](https://github.com/exceljs/exceljs/issues/2267) (May 2023). An alternative fix was opened upstream as [exceljs/exceljs#2588](https://github.com/exceljs/exceljs/pull/2588) (Nov 2023) but has been stale since Feb 2024.
+
+**Build Fix: Pin uuid to ^9.0.1** ([#64](https://github.com/protobi/exceljs/pull/64))
+
+`npm install` had drifted to `uuid@14.0.0`, which broke `npm run build`:
+- uuid@14 dropped the `main` field in favor of `exports`-only — browserify@16 doesn't honor `exports`
+- uuid@11 (npm's recommended CJS target) ships ES2021 syntax (`??=`) browserify@16 can't parse
+- uuid@9.0.1 is the highest version that keeps both `main` and pre-ES2021 CJS output
+
+**Documentation: AGENTS.md for AI-generated PRs** ([#65](https://github.com/protobi/exceljs/pull/65))
+
+Adds `AGENTS.md` at repo root with hard rules for AI coding agents (Claude Code, Cursor, Codex, etc.): surgical scope, no formatter sweeps, complete PR descriptions, real-fixture testing, cross-check open PRs, Excel-verification for serialization changes. Auto-discovered by AI tools; referenced from README.md, CONTRIBUTING.md, and the PR template.
+
+**Tests:** All 886 unit tests passing (4 in `SharedStrings`, up from 2).
+
+---
+
 ### 4.4.0-protobi.9 (2026-02-01)
 
 **New Feature: Pivot Table & Chart Round-Trip Preservation** ([#41](https://github.com/cjnoname/excelts/issues/41))

@@ -59,6 +59,13 @@ See [FORK.md Release History](FORK.md#fork-release-history) for details.
 
 ## Fork Release Notes
 
+**4.4.0-protobi.10** (May 2026) - Streaming richText Bug Fix + Build Fix
+- **Fix richText shared-string deduplication in streaming writer** - Cherry-picked from PR #50 by @gwkline. Previously, every richText cell collapsed into a single shared-string entry because objects coerced to `"[object Object]"` as a hash key. Now richText values are hashed by their rendered XML representation. Addresses upstream [exceljs/exceljs#2267](https://github.com/exceljs/exceljs/issues/2267).
+- Adds regression tests covering richText deduplication and formatting-aware distinction
+- Pin uuid to ^9.0.1 to keep browserify build working (uuid@14 dropped the `main` field; uuid@11 ships ES2021 syntax browserify can't parse)
+- Adds `AGENTS.md` with hard rules for AI-generated PRs
+- All 886 unit tests passing
+
 **4.4.0-protobi.9** (February 2026) - Pivot Table & Chart Round-Trip Preservation + Critical Bug Fixes
 - **Round-trip preservation for pivot tables and charts** - Read Excel files with existing pivot tables and charts, write them back without corruption
 - Hybrid preservation approach: stores raw XML while extracting minimal metadata for structural integrity
