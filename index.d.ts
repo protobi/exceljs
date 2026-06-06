@@ -1381,6 +1381,8 @@ export interface Worksheet {
 	 * delete conditionalFormattingOptions
 	 */
 	removeConditionalFormatting(filter: any): void;
+
+	addPivotTable(model: PivotTableModel): void;
 }
 
 export interface CalculationProperties {
@@ -1907,6 +1909,33 @@ export interface Table extends Required<TableProperties> {
 	 * Remove a column with data
 	 */
 	removeColumns: (colIndex: number, count: number) => void
+}
+
+export interface PivotTableModel {
+	sourceSheet: Worksheet;
+	/**
+	 * Top left cell of the source data from {@link sourceSheet}
+	 * @default A1
+	 */
+	sourceRef?: string;
+	/**
+	 * Column names as defined in the header row, see {@link sourceRef}.
+	 */
+	rows: string[];
+	/**
+	 * Column names as defined in the header row, see {@link sourceRef}.
+	 */
+	columns: string[];
+	/**
+	 * Column names as defined in the header row, see {@link sourceRef}.
+	 * Only 1 item is possible for now.
+	 */
+	values: string[];
+	/**
+	 * Column names as defined in the header row, see {@link sourceRef}.
+	 * Only `sum` is possible for now.
+	 */
+	metric: "sum";
 }
 
 export namespace config {
