@@ -17,7 +17,7 @@
     "url": "https://github.com/sponsors/exceljs"
   },
   "engines": {
-    "node": ">=8.3.0"
+    "node": ">=18"
   },
   "main": "./excel.js",
   "browser": "./dist/exceljs.min.js",
@@ -110,8 +110,7 @@
     "readable-stream": "^3.6.0",
     "saxes": "^5.0.1",
     "tmp": "^0.2.0",
-    "unzipper": "^0.10.11",
-    "uuid": "^9.0.1"
+    "unzipper": "^0.10.11"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
