@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pivotCacheDefinition xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="xr" xmlns:xr="http://schemas.microsoft.com/office/spreadsheetml/2014/revision" r:id="rId1" refreshOnLoad="1" refreshedBy="Author" refreshedDate="45125.026046874998" createdVersion="8" refreshedVersion="8" minRefreshableVersion="3" recordCount="7"><cacheSource type="worksheet"><worksheetSource ref="A1:F7" sheet="Sales Data"/></cacheSource><cacheFields count="6"><cacheField name="Region" numFmtId="0">
+      <sharedItems count="4">
+        <s v="East" /><s v="North" /><s v="South" /><s v="West" />
+      </sharedItems>
+    </cacheField>
+    <cacheField name="Product" numFmtId="0">
+      <sharedItems count="3">
+        <s v="Widget A" /><s v="Widget B" /><s v="Widget C" />
+      </sharedItems>
+    </cacheField>
+    <cacheField name="Salesperson" numFmtId="0">
+      <sharedItems count="4">
+        <s v="Alice" /><s v="Bob" /><s v="Charlie" /><s v="Diana" />
+      </sharedItems>
+    </cacheField>
+    <cacheField name="Quarter" numFmtId="0">
+      <sharedItems count="2">
+        <s v="Q1" /><s v="Q2" />
+      </sharedItems>
+    </cacheField>
+    <cacheField name="Revenue" numFmtId="0">
+      <sharedItems count="6">
+        <s v="10000" /><s v="12000" /><s v="15000" /><s v="18000" /><s v="20000" /><s v="22000" />
+      </sharedItems>
+    </cacheField>
+    <cacheField name="Units" numFmtId="0">
+      <sharedItems count="6">
+        <s v="100" /><s v="120" /><s v="150" /><s v="180" /><s v="200" /><s v="220" />
+      </sharedItems>
+    </cacheField></cacheFields></pivotCacheDefinition>
