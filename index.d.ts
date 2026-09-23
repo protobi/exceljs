@@ -1919,6 +1919,11 @@ export interface PivotTableModel {
 	 */
 	sourceRef?: string;
 	/**
+	 * Top left cell where the pivot table is placed on its own sheet.
+	 * @default A3
+	 */
+	ref?: string;
+	/**
 	 * Column names as defined in the header row, see {@link sourceRef}.
 	 */
 	rows: string[];

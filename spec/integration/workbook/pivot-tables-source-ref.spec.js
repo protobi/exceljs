@@ -187,4 +187,82 @@ describe('Workbook', () => {
       }).to.throw(/Invalid sourceRef/);
     });
   });
+
+  describe('Pivot Tables — ref option', () => {
+    // `ref` anchors the pivot table itself; `sourceRef` says where its source
+    // data begins. They are independent, and a sheet that carries a header block
+    // above the table needs both.
+    function buildAnchoredWorkbook(ref) {
+      const workbook = new ExcelJS.Workbook();
+      const dataSheet = workbook.addWorksheet('Data');
+      dataSheet.addRows([
+        ['Region', 'Quarter', 'Amount'],
+        ['North', 'Q1', 100],
+        ['South', 'Q1', 200],
+        ['North', 'Q2', 150],
+      ]);
+
+      const pivotSheet = workbook.addWorksheet('Pivot');
+      // Content above the anchor — the case `ref` exists for.
+      pivotSheet.getCell('A1').value = 'Quarterly amounts';
+      pivotSheet.addPivotTable({
+        sourceSheet: dataSheet,
+        ref,
+        rows: ['Region'],
+        columns: ['Quarter'],
+        values: ['Amount'],
+        metric: 'sum',
+      });
+
+      return workbook;
+    }
+
+    it('anchors the location at the given cell', async () => {
+      const zip = await writeAndReadZip(buildAnchoredWorkbook('A7'));
+      const pivotXml = await xmlOf(zip, 'xl/pivotTables/pivotTable1.xml');
+
+      expect(pivotXml).to.include('ref="A7:E19"');
+      expect(pivotXml).to.not.include('ref="A3:E15"');
+    });
+
+    it('leaves the relative location attributes untouched', async () => {
+      const zip = await writeAndReadZip(buildAnchoredWorkbook('C5'));
+      const pivotXml = await xmlOf(zip, 'xl/pivotTables/pivotTable1.xml');
+
+      // firstHeaderRow/firstDataRow/firstDataCol are relative to the top left
+      // cell of ref, so moving the anchor must not change them.
+      expect(pivotXml).to.include('ref="C5:G17"');
+      expect(pivotXml).to.include('firstHeaderRow="1"');
+      expect(pivotXml).to.include('firstDataRow="2"');
+      expect(pivotXml).to.include('firstDataCol="1"');
+    });
+
+    it('omitting ref keeps original A3 behaviour (backwards-compatible)', async () => {
+      const zip = await writeAndReadZip(buildAnchoredWorkbook(undefined));
+      const pivotXml = await xmlOf(zip, 'xl/pivotTables/pivotTable1.xml');
+
+      expect(pivotXml).to.include('ref="A3:E15"');
+    });
+
+    it('throws a descriptive error for an invalid ref string', () => {
+      const workbook = new ExcelJS.Workbook();
+      const dataSheet = workbook.addWorksheet('Data');
+      dataSheet.addRows([
+        ['Region', 'Amount'],
+        ['North', 100],
+      ]);
+      const pivotSheet = workbook.addWorksheet('Pivot');
+
+      expect(() => {
+        pivotSheet.addPivotTable({
+          sourceSheet: dataSheet,
+          ref: 'not-a-ref',
+          rows: ['Region'],
+          columns: ['Region'],
+          values: ['Amount'],
+          metric: 'sum',
+        });
+      }).to.throw(/Invalid ref/);
+    });
+  });
 });
