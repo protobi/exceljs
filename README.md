@@ -530,6 +530,11 @@ worksheet.pageSetup.margins = {
   header: 0.3, footer: 0.3
 };
 
+// Insert a manual page break after column C, spanning all rows.
+worksheet.pageSetup.colBreaks = [
+  {id: 3, min: 0, max: 1048575, man: 1}
+];
+
 // Set Print Area for a sheet
 worksheet.pageSetup.printArea = 'A1:G20';
 

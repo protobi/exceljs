@@ -677,7 +677,22 @@ export interface Column {
 
 	defn: any; //todo
 }
+export interface ColumnBreak {
+	/** Break after this column (one-based). */
+	id: number;
+	/** First and last affected rows (zero-based, inclusive). */
+	min?: number;
+	max?: number;
+	/** Whether this is a manual break. */
+	man?: number;
+	/** Whether this is a pivot table break. */
+	pt?: number;
+}
+
 export interface PageSetup {
+	/** Column page breaks, serialized as worksheet colBreaks. */
+	colBreaks: ColumnBreak[] | null;
+
 	/**
 	 * Whitespace on the borders of the page. Units are inches.
 	 */
